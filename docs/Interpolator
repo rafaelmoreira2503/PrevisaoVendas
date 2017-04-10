@@ -1,0 +1,135 @@
+public class GettextMessageInterpolator implements MessageInterpolator {
+
+    private final MessageInterpolator delegate;
+
+    public GettextMessageInterpolator() {
+        this.delegate = new ResourceBundleMessageInterpolator();
+    }
+
+    @Override
+    public String interpolate(String message, Context context) {
+        return this.interpolate(message, context, ClientLocalLocator.get());
+    }
+
+    @Override
+    public String interpolate(String message, Context context, Locale locale) {   
+        I18n i18n = ClientLocalLocator.getI18n();
+        String retVal = i18n.tr(message);
+        if (StringUtils.isNotBlank(retVal))
+            return retVal;
+        return delegate.interpolate(message, context, locale);
+    }
+
+}
+
+Maybe you already know that messages for Bean Validation are defined in the Resource Bundle ValidationMessages.properties in the root of your classes (i.e WEB-INF\classes\ValidationMessages.properties).
+
+These messages can have parameters but they don't work as in JSF. There is a interface called MessageInterpolator that transform the message pattern into the actual message.
+
+Default interpolator works with named parameters like in the message: Value must be between {min} and {max}.
+ The values between { and } are resolved first in resource bundle of the application;
+  later in the resource bundle of the provider, and last in properties of the constraint annotation. 
+  (This is more or less how it works, the complete algorithm is in section 4.3 of the Bean Validation specification).
+
+Suppose you define the attribute message of the Size annotation as {creditCard.message}
+
+The content of ValidationMessage.properties could be
+
+creditCard.message=Credit card length must be at least {min} characters. \
+                   Thank you for choosing the plantsvszombies credit card.
+You could replace plantsvszombies with a property:
+
+creditCard.message=Credit card length must be at least {min} characters. \
+                   Thank you for choosing the {creditCard.type} credit card.
+creditCard.type=plantsvszombies
+You could even use two parameters in the message of the constraint
+
+Size(min=13, message="{creditCard.message} {plantsvszombies.messages}")
+and define the resource bundle as
+
+creditCard.message=Credit card length must be at least {min} characters.
+plantsvszombies.message=Thank you for choosing the plantsvszombies credit card.
+I think this is a simple and clean approach.
+
+But if you want something more like defining custom parameters in the declaration of the constraint you could use a custom message interpolator. Please notice that this could be a trickier solution.
+
+Well, you could define a syntax to introduce your parameters in the message string. Then, let the default interpolator resolve the message. The syntax for custom parameters won't be understood by the default interpolator and they will still be there after resolving. Then, the custom interpolator can replace replace the custom parameters.
+
+This is more easy to understand with an example.
+
+First, a message is defined like {creditCard.message}[plantsvszombies]. For this syntax, the content between the square brackets are the indexed parameters separated by commas (here is only one parameter).
+
+Next, the content of the resource bundle is defined with:
+
+ creditCard.message=Credit card length must be at least {min} characters. \
+                    Thank you for choosing the {0} credit card.
+When the default interpolator replaces the first part of the expression, we'll have:
+
+Credit card length must be at least 13 characters. \ Thank you for choosing the {0} credit card.[plantsvszombies]
+
+Then, the custom interpolator will take the last expression and split the content to get the tokens and replace the indexed parameters with the token in the corresponding index (parameter[0]=plantsvzzombies).
+
+So the message will be:
+
+Credit card length must be at least 13 characters. \ Thank you for choosing the plantsvszombies credit card.
+
+This is the code of the custom interpolator for this syntax (not optimized and the regex pattern could not work if there are other square brackets in the first expression or in the tokens).
+
+ package validation;
+
+ import java.util.Locale;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+ import javax.validation.MessageInterpolator;
+ import javax.validation.Validation;
+
+ km
+The registering of the interpolator goes in the xml file called META-INF/validation.xml (4.4.6 of the spec).
+
+<?xml version="1.0" encoding="UTF-8"?>
+<validation-config
+xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation=
+"http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.0.xsd">
+    <message-interpolator>validation.MyInterpolator</message-interpolator>
+</validation-config>  
+
+
+up vote
+2
+down vote
+You could use a MessageInterpolator. If you use hibernate try this
+
+public class ResourceBundleMessageInterpolator extends org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator implements
+    MessageInterpolator {
+
+  @Override
+  public String interpolate(String message, Context context, Locale locale) {
+    // evaluate el expression
+    if (message != null && message.startsWith("#{")) {
+      FacesContext facesContext = FacesContext.getCurrentInstance();
+      Application app = facesContext.getApplication();
+      ExpressionFactory elFactory = app.getExpressionFactory();
+      ELContext elContext = facesContext.getELContext();
+      ValueExpression valueExp = elFactory.createValueExpression(elContext, message, Object.class);
+      Object value = valueExp.getValue(elContext);
+      if (value == null) {
+        return null;
+      } else {
+        return value.toString();
+      }
+    } else {
+      return super.interpolate(message, context, locale);
+    }
+  }
+}
+Finally you need META-INF/validation.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<validation-config
+        xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration">
+        <message-interpolator>package.ResourceBundleMessageInterpolator</message-interpolator>
+</validation-config>

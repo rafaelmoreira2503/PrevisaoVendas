@@ -1,0 +1,38 @@
+<html>
+    <body>
+        <table>
+            <tr>
+                <td style="width: 100px">Tecnico:</td>
+                <td>$tecnico.nome</td>
+            </tr>
+            <tr>
+                <td>Encarregado:</td>
+                <td>$tecnico.chefe.nome</td>
+            </tr>
+            <tr>
+                <td>Empresa:</td>
+                <td>$tecnico.empresa.nome</td>
+            </tr>
+        </table>
+        
+        <br/>
+        <table border="1" cellspacing="0" cellpadding="3">
+            <tr>
+                <th>Tecnico</th>
+                <th>Codigo do Item</th>
+                <th>Descrição</th>
+                <th>Total de Items para o Técnico</th>
+            </tr>
+            #foreach ($item in $tecnico.items)
+            	
+	            <tr>
+	                <td>$tecnico.nome</td>
+	                <td>$item.codigoItem</td>
+	                <td>$item.descricao</td>
+	                <td>$item.totalItems</td>
+	            </tr>
+	           
+            #end
+        </table>
+    </body>
+</html>

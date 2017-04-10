@@ -1,0 +1,25 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `criaUsuarioOmc` (@matricula varchar(8)
+,@senha varchar(6)) AS
+set nocount on
+if exists (select 1 from Usuario where matricula = @matricula )
+begin
+raiserror('Usuário já cadastrado',16,9)
+return 9
+end
+else
+begin
+insert into dbo.Usuario
+(matricula
+,senha)
+values
+(@matricula
+,@senha)
+end
+set nocount off
+END

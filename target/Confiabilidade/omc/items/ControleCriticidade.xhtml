@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+
+
+			<script>
+				function tratarJustificativa(args) {
+					if (!args.validationFailed) {
+						justificativaDlg.hide();
+					}
+				}
+			</script>
+			<f:metadata>
+				<f:event listener="#{controleCriticidadeBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+
+
+			<h:form id="frmPesquisa">
+				<h1>#{msg.controle_criticidade}</h1>
+				<p:separator></p:separator>
+
+				<p:dataTable id="itemsTable"
+					value="#{controleCriticidadeBean.lazyModel}" var="item"
+					rowKey="item.codigo" selectionMode="single"
+					
+					rowIndexVar="rowId"
+					style="margin-top: 20px;" emptyMessage="
+				 #{msg.nenhum_item}"
+					paginatorPosition="bottom" rows="20" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="20, 50, 100"
+					lazy="true">
+
+	<f:facet name="header" style="size:100%">
+						#{msg.lista_items}
+					</f:facet>
+
+
+					<p:column sortBy="#{item.codigoItem}"
+						style="text-align: left; width: 50px">
+						<h:outputText value="#{item.codigoItem}" />
+						<f:facet name="header">
+							<h:outputText value="#{msg.codigo_item}" />
+						</f:facet>
+
+					</p:column>
+					<p:column headerText="#{msg.descricao}" sortBy="#{item.descricao}"
+						style="text-align: left; width: 50px">
+						<h:outputText value="#{item.descricao}" />
+					</p:column>
+
+					<p:column headerText=" #{msg.data_item}"
+						style="text-align: center; width: 20px">
+						<h:outputText value="#{item.dataItem}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+
+					<p:column headerText="#{msg.status}"
+						style="text-align: center; width: 30px;">
+						<h:outputText style="color:green;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.criticado}" />
+
+						<h:outputText style="color:red;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.pendente}" />
+
+						<h:outputText style="color:blue;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.associado}" />
+
+						<h:outputText style="color:purple;text-transform:upercase;"
+							value="#{item.justificativa.descAbrev}" />
+					</p:column>
+					<p:columnGroup type="footer">
+						<p:row>
+							<p:column colspan="4" footerText="#{msg.total_associado}"
+								style="text-align: right;background:navy;color: Snow;" />
+							<p:column style="text-align: right;background:navy;color: Snow;">
+								<f:facet name="footer">
+									<h:outputText value="#{controleCriticidadeBean.totalAssociado}" />
+
+
+								</f:facet>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="4" footerText="#{msg.total_feito}"
+								style="text-align: right;background:navy;color: Snow;" />
+							<p:column style="text-align: right;background:navy;color: Snow;">
+								<f:facet name="footer">
+									<h:outputText value="#{controleCriticidadeBean.totalFeito}" />
+
+
+								</f:facet>
+							</p:column>
+						</p:row>
+					</p:columnGroup>
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+
+						<p:button outcome="/omc/items/CriticaItem" value="C"
+							disabled="#{item.limpavel}" title="#{msg.critica}">
+							<f:param name="item" value="#{item.codigo}" />
+
+						</p:button>
+
+						<p:commandButton disabled="#{item.limpavel}"
+							oncomplete="justificativaDlg.show()" value="J" process="@this"
+							update=":frmPesquisa:justificaPanel" title="#{msg.justifica}">
+
+
+							<f:setPropertyActionListener
+								target="#{controleCriticidadeBean.itemSelecionado}"
+								value="#{item}" />
+							<p:resetInput target=":frmPesquisa:justificativaDialog" />
+
+						</p:commandButton>
+
+						<p:commandButton update="itemsTable" title="#{msg.desfazer}"
+							process="@this" disabled="#{item.naoLimpavel}" value="D"
+							action="#{controleCriticidadeBean.limpar}"
+							style="margin-left: 8px">
+							<f:setPropertyActionListener
+								target="#{controleCriticidadeBean.itemSelecionado}"
+								value="#{item}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+
+				<p:dialog widgetVar="justificativaDlg" id="justificativaDialog"
+					height="150" width="700" modal="true" closable="true"
+					draggable="false" resizable="false" header="Justificar o Item">
+
+					<h:panelGroup id="justificaPanel">
+
+						<p:messages id="dlgMensagem" />
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="#{msg.justificativa}" for="justificativa" />
+							<p:selectOneMenu id="justificativa" required="true"
+								requiredMessage="#{msg.informa_justificativa}"
+								value="#{controleCriticidadeBean.itemSelecionado.justificativa}">
+								<f:selectItem itemLabel="---Selecione uma Justificativa---" />
+								<f:selectItems value="#{controleCriticidadeBean.justificativas}"
+									var="justificativa" itemValue="#{justificativa}"
+									itemLabel="#{justificativa.descricao}" />
+
+							</p:selectOneMenu>
+							<h:outputText id="descricao" style="color:red;"
+								value="#{msg.justificativa_email}" />
+						</h:panelGrid>
+						<p:separator />
+
+						<p:commandButton value="#{msg.justifica}" title="Justificar"
+							action="#{controleCriticidadeBean.justificar}"
+							update="frmPesquisa:itemsTable  dlgMensagem"
+							oncomplete="tratarJustificativa(args)">
+
+						</p:commandButton>
+
+
+					</h:panelGroup>
+				</p:dialog>
+
+				<p:blockUI block="itemsTable" trigger="itemsTable">
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:blockUI>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

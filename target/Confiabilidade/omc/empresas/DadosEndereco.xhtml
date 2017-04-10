@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="4" styleClass="semBorda"
+		columnClasses="rotulo, campo, rotulo, campo">
+
+		<p:outputLabel value="#{msg.logradouro} :" for="logradouro" />
+		<p:inputText id="logradouro" size="50" maxlength="50" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.endereco.logradouro}" />
+
+		<p:outputLabel value="#{msg.numero} :"  for="numero" />
+		<p:inputText id="numero" size="5" maxlength="5"
+			value="#{cadastroEmpresaBean.empresa.endereco.numero}" />
+
+		<p:outputLabel value="#{msg.complemento} :"  for="complemento" />
+		<p:inputText id="complemento" size="30" maxlength="30" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.endereco.complemento}" />
+
+		<p:outputLabel value="#{msg.bairro} :"  for="bairro" />
+		<p:inputText id="bairro" size="30" maxlength="30" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.endereco.bairro}" />
+
+
+		<p:outputLabel value="#{msg.cidade} :"  for="cidade" />
+		<p:inputText id="cidade" size="30" maxlength="30" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.endereco.cidade}" />
+
+		<p:outputLabel value="#{msg.uf} : *"  for="uf" />
+		<p:inputText id="uf" size="2" maxlength="2" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.endereco.uf}" />
+
+
+
+		<p:outputLabel value="#{msg.cep} : *"  for="cep" />
+		<h:panelGroup >
+			<p:inputMask id="cep" mask="99999-999"
+				value="#{cadastroEmpresaBean.empresa.endereco.cep}" />
+			<h:outputLink style=" margin-left: 5px;padding-top:20px;margin-top:30px;"
+				value="http://www.buscacep.correios.com.br/servicos/dnec/index.do">
+
+				<h:graphicImage library="images" name="cep.gif" />
+			</h:outputLink>
+		</h:panelGroup>
+
+
+
+
+
+	</p:panelGrid>
+
+</ui:composition>

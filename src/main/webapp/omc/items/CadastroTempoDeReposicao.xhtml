@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+		<ui:define name="divMain">
+			<script>
+				function tratarReposicao(args) {
+					if (!args.validationFailed) {
+						reposicaoDlg.hide();
+					}
+				}
+			</script>
+
+
+			<h1>Calcula Tempo de Reposição</h1>
+			<h:form id="frmPesquisa">
+
+
+
+				<p:separator></p:separator>
+
+				<!-- enable focus component -->
+				<p:focus context="frmPesquisa" />
+
+				<p:dataTable id="itemsTable"
+					value="#{cadastroTempoDeReposicaoBean.lazyModel}" var="item"
+					style="margin-top: 20px;" emptyMessage="
+				 #{msg.nenhum_item} "
+					selectionMode="single" paginatorPosition="bottom" rows="20"
+					paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 50"
+					lazy="true">
+
+					<f:facet name="header">
+						<h:outputText
+							value="Politica Para empresa - #{cadastroTempoDeReposicaoBean.empresa}" />
+					</f:facet>
+
+					<p:column sortBy="#{item.codigoItemAbc}"
+						filterBy="#{item.codigoItemAbc}"
+						style="text-align: left; width: 4px">
+						<h:outputText value="#{item.codigoItemAbc}" />
+						<f:facet name="header">
+							<h:outputText value="#{msg.codigo_item}" />
+						</f:facet>
+
+					</p:column>
+					
+					<p:column headerText="#{msg.descricao}"
+						sortBy="#{item.descricaoAbc}" filterStyle="width: 300px;"
+						filterBy="#{item.descricaoAbc}"
+						style="text-align: left; width: 110px;">
+						<h:outputText value="#{item.descricaoAbc}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Classificação" sortBy="#{item.abc}"
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.abc}" />
+					</p:column>
+					<p:column headerText="#{msg.criticidade}" sortBy="#{item.item.criticidade}"
+						style="text-align: center; width: 40px;">
+						<h:outputText value="#{item.item.criticidade}" />
+					</p:column>
+					
+					<p:column headerText="Demanda" sortBy="#{item.media}"
+						style="text-align: center; width: 40px;">
+						<h:outputText value="#{item.demanda}" />
+					</p:column>
+					
+
+					<p:column headerText="TR / LT Total (Mês) "
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.tempoDeReposicao.tempoReposicao}" />
+					</p:column>
+
+					<p:column headerText="Ponto de Reposicao"
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.pontoDeReposicao}" />
+					</p:column>
+					<p:column headerText="Quantidade a Repor"
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.quantidadeRepor}" />
+					</p:column>
+					<p:column headerText="Estoque de Segurança "
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.estoqueDeSeguranca}" />
+					</p:column>
+					<p:column headerText="Estoque Máximo"
+						style="text-align: center; width: 10px;">
+						<h:outputText value="#{item.estoqueMaximo}" />
+					</p:column>
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+
+
+
+						<p:commandButton id="tr" oncomplete="reposicaoDlg.show()"
+							icon="ui-icon-pencil"
+							action="#{cadastroTempoDeReposicaoBean.buscarItemComTempoDeReposicao}"
+							process="@this" update=":frmPesquisa:reposicaoPanel">
+							<p:tooltip for="tr" value="Calcular TR"></p:tooltip>
+
+							<f:setPropertyActionListener
+								target="#{cadastroTempoDeReposicaoBean.itemSelecionado}"
+								value="#{item}" />
+							<p:resetInput target=":frmPesquisa:reposicaoDialog" />
+
+						</p:commandButton>
+
+
+					</p:column>
+
+
+
+
+				</p:dataTable>
+				<p:dialog widgetVar="reposicaoDlg" id="reposicaoDialog" height="300"
+					width="900" modal="true" closable="true" draggable="false"
+					resizable="false" header=" Cadastrar Tempo de Reposição">
+
+					<h:panelGroup id="reposicaoPanel">
+
+						<p:messages id="dlgMensagem" />
+
+						<h:outputText
+							value="Codigo  : #{cadastroTempoDeReposicaoBean.itemSelecionado.codigoItemAbc}   ---- Descrição : #{cadastroTempoDeReposicaoBean.itemSelecionado.descricaoAbc}"
+							style="color:navy" />
+
+
+
+
+
+						<p:panelGrid id="politica" columns="4"
+							style="width: 100%; margin-top: 20px"
+							columnClasses="rotulo, campo, rotulo, campo">
+
+							<p:outputLabel value="Tempo de Reposição do Fornecedor : *"
+								for="fornecedor" />
+
+							<h:panelGroup>
+								<p:inputText id="fornecedor" size="10" maxlength="10"
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoFornecedor}" />
+								<p:outputLabel value=" em Dias" style="color:blue" />
+							</h:panelGroup>
+
+							<p:outputLabel value="Tempo de Reposição do Compras : *"
+								for="compras" />
+							<h:panelGroup>
+								<p:inputText id="compras" size="10" maxlength="10" required=""
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoCompras}" />
+								<p:outputLabel value=" em Dias" style="color:blue" />
+							</h:panelGroup>
+
+
+							<p:outputLabel value="Tempo de Reposição do Recebimento : *"
+								for="recebimento" />
+							<h:panelGroup>
+								<p:inputText id="recebimento" size="10" maxlength="10"
+									style="text-transform: uppercase"
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoRecebimento}" />
+								<p:outputLabel value=" em Dias" style="color:blue" />
+							</h:panelGroup>
+
+							<p:outputLabel value="Tempo de Reposição do Requisição : *"
+								for="requisicao" />
+
+							<h:panelGroup>
+								<p:inputText id="requisicao" size="10" maxlength="10"
+									style="text-transform: uppercase"
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoRequisicao}" />
+								<p:outputLabel value=" em  Dias" style="color:blue" />
+							</h:panelGroup>
+
+							<p:outputLabel value="Tempo de Reposição do Transporte: *"
+								for="transporte" />
+
+							<h:panelGroup>
+								<p:inputText id="transporte" size="10" maxlength="10"
+									style="text-transform: uppercase"
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoTransporte}" />
+								<p:outputLabel value=" em Dias" style="color:blue" />
+							</h:panelGroup>
+
+							<p:outputLabel value="Tempo de Reposição do Importado : "
+								for="importado" />
+
+							<h:panelGroup>
+								<p:inputText id="importado" size="10" maxlength="10"
+									value="#{cadastroTempoDeReposicaoBean.itemSelecionado.tempoDeReposicao.tempoReposicaoImportado}" />
+
+								<p:outputLabel value=" em Dias" style="color:blue" />
+							</h:panelGroup>
+
+
+						</p:panelGrid>
+
+						<p:separator />
+						<p:separator />
+
+
+						<p:commandButton action="#{cadastroTempoDeReposicaoBean.salvar}"
+							value="#{msg.salvar}"
+							update="frmPesquisa:itemsTable  dlgMensagem"
+							oncomplete="tratarReposicao(args)">
+
+						</p:commandButton>
+
+
+					</h:panelGroup>
+				</p:dialog>
+
+				<p:blockUI block="itemsTable" trigger="itemsTable">
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:blockUI>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

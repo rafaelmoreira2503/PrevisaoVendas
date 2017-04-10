@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Confiabilidade em Estoque</title>
+	<h:outputStylesheet library="css" name="mainomc.css" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 0,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo o Dia'
+		};
+	</script>
+
+
+
+</h:head>
+
+
+
+	<h:body>
+
+		<header>
+		<div style="float: left">
+
+
+
+			<span
+				style="float: left; height: 30px; line-height: 30px; margin-rigth: 60px">
+				<h:link outcome="/Home">
+					<h:graphicImage styleClass="logo" library="images"
+						name="logo-omc.jpg" />
+				</h:link>
+
+			</span>
+			<h:form style="display: inline-block;margin-left:15px;">
+
+				<br />
+				<strong>#{msg.endereco} :</strong>
+				Av. Rio Branco, 1 / 1201 - Centro – Rio de Janeiro – RJ – cep:
+				20.090-907<br />
+				<br />
+				<strong>#{msg.telefones} :</strong> +55 21 2237-7987 | +55
+				21 2143-5759
+				<br />
+				<br />
+				<p:menubar styleClass="menu-sistema">
+					<p:submenu label="#{msg.principal}">
+.       		 <p:submenu label="#{msg.cadastros}">
+
+
+							<p:menuitem value="#{msg.empresas}"
+								icon="ui-icon-home"
+								outcome="/omc/empresas/CadastroEmpresa"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+							<p:menuitem value="#{msg.areas}"
+								outcome="/omc/areas/CadastroArea"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+							<p:menuitem value="#{msg.especialidades}"
+								outcome="/omc/especialidades/CadastroEspecialidade"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+							<p:separator />
+
+							<p:submenu label="#{msg.usuarios}"  icon="ui-icon-person">
+						
+								<p:menuitem value="#{msg.gerentes}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/gerentes/CadastroGerente" />
+
+
+								<p:menuitem value="#{msg.encarregados}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/encarregados/CadastroEncarregado" />
+								<p:menuitem value="#{msg.tecnicos}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/tecnicos/CadastroTecnico" />
+								<p:separator />
+
+
+							</p:submenu>
+ 
+
+							<p:menuitem value="#{msg.perguntas}" icon="ui-icon-help" 
+								outcome="/omc/perguntas/CadastroPergunta"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+
+
+							<p:menuitem value="#{msg.associa_perguntas_empresas}" 
+								outcome="/omc/empresas/AssociarPerguntaEmpresa"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+
+						</p:submenu>
+
+						<p:submenu label="#{msg.gerente}">
+
+							<p:menuitem value="#{msg.verifica_items}"
+								disabled="#{not seguranca.gerenteDoProjeto}"
+								outcome="/omc/items/ItemsCriticados" />
+
+
+							<p:menuitem value="Criticados x Classificação ABCDE"
+								disabled="#{not seguranca.gerenteDoProjeto}"
+								outcome="/omc/items/CriticadosABCDE" />
+
+							<p:menuitem value="Estatística por por Área"
+								disabled="#{not seguranca.gerenteDoProjeto}"
+								outcome="/omc/graficos/EstatisticaPorArea" />
+
+						</p:submenu>
+						<p:submenu label="#{msg.encarregado}">
+							<p:menuitem value="Associar Item aos Técnicos" icon="ui-icon-arrowstop-1-e"
+								disabled="#{not seguranca.encarregado}"
+								outcome="/omc/items/AssociarItems" />
+							<p:menuitem value="Estatística por por Técnico"
+								disabled="#{not seguranca.encarregado}"
+								outcome="/omc/graficos/EstatisticaEncarregado" />
+							<p:menuitem value="Classificação ABCDE"
+								disabled="#{not seguranca.gerenteDoProjetoOuEncarregado}"
+								outcome="/omc/items/ItemsAbcde" />
+
+						</p:submenu>
+
+						<p:submenu label="#{msg.tecnicos}">
+							<p:menuitem value="#{msg.controle_criticidade}"
+								disabled="#{not seguranca.tecnico}"
+								outcome="/omc/items/ControleCriticidade" />
+
+						</p:submenu>
+
+
+
+
+					</p:submenu>
+					
+
+						<p:menuitem value="Política de Estoque"
+							outcome="/omc/items/CadastroTempoDeReposicao" />
+
+
+
+					
+					<p:submenu label="#{msg.importacao}" icon="ui-icon-document">
+						<p:menuitem value="#{msg.importar_arquivo_criticidade}"
+							disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+							outcome="/importar/ImportarArquivo" />
+
+						<p:menuitem value="#{msg.importar_arquivo_abcde}"
+							disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+							outcome="/importar/ImportarArquivoAbcde" />
+
+
+					</p:submenu>
+
+					<p:menuitem icon="ui-icon-help" value="#{msg.ajuda}"
+						url="www.google.com" />
+					<p:menuitem icon="ui-icon-home" value="#{msg.home}" outcome="/Home" />
+
+
+					<p:menuitem icon="ui-icon-extlink" value="#{msg.sair}"
+						url="/j_spring_security_logout" />
+
+
+				</p:menubar>
+
+			</h:form>
+
+		</div>
+
+
+		<div style="float: right; margin-right: 110px;">
+			<span
+				style="float: left; height: 30px; line-height: 30px; margin-right: 15px; margin-top: 80px;">
+				Olá #{seguranca.nomeUsuario}! </span>
+
+			<h:form id="frmSenha" style="display:inline-block">
+				<p:panelGrid columns="2" style="margin-top:0px;"
+					columnClasses="linha">
+
+					<p:outputLabel value="Senha Antiga : *" for="senhaAntiga" />
+					<p:password id="senhaAntiga" size="40" maxlength="16"
+						promptLabel="#{msg.informa_senha}" feedback="true"
+						value="#{alterarSenhaBean.senhaAntiga}" />
+
+					<p:outputLabel value="Senha Nova : *" for="senhaNova" />
+					<p:password id="senhaNova" size="40" maxlength="16" feedback="true"
+						weakLabel="#{msg.fraca}" goodLabel="#{msg.boa}"
+						strongLabel="#{msg.forte}" value="#{alterarSenhaBean.novaSenha}" />
+
+					<h:panelGroup>
+						<h:commandLink id="pt_BR" immediate="true"
+							actionListener="#{localeBean.mudaLingua}">
+							<h:graphicImage library="images" name="portugues.jpg" />
+						</h:commandLink>
+						<h:commandLink id="en" immediate="true"
+							actionListener="#{localeBean.mudaLingua}">
+							<h:graphicImage library="images" name="ingles.jpg" />
+						</h:commandLink>
+					</h:panelGroup>
+					<p:commandButton value="#{msg.salvar}" icon="ui-icon-disk"
+						styleClass="botao-salvar" action="#{alterarSenhaBean.alteraSenha}"
+						update="@form" />
+				</p:panelGrid>
+
+			</h:form>
+		</div>
+		<div style="clear: both"></div>
+		</header>
+
+
+
+
+		<div id="divMain">
+
+			<p:growl id="messageGrowl" autoUpdate="true" life="3000" />
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:ajaxStatus styleClass="ajax-status">
+
+				<f:facet name="start">
+					<h:graphicImage library="images" name="ajax-loader.gif" />
+				</f:facet>
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+
+
+
+
+			<ui:insert name="divMain" />
+		</div>
+
+		<div id="divFooter">
+			<strong> <a href="http://www.omcconsult.com.br"
+				target="_blank">OMC Consult</a> © 2013 Todos os direitos reservados.
+				Confiabilidade em Estoque v1.0
+			</strong>
+		</div>
+
+	</h:body>
+
+
+
+</html>

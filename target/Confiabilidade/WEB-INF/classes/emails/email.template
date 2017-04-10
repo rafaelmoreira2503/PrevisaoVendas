@@ -1,0 +1,48 @@
+<html>
+    <body>
+        <table>
+        <tr>
+                <td>Empresa:</td>
+                <td>$item.empresa.nome</td>
+            </tr>
+            <tr>
+                <td style="width: 100px">Tecnico:</td>
+                <td>$item.tecnico.nome</td>
+            </tr>
+            <tr>
+                <td style="width: 100px">Descrição:</td>
+                <td>$item.descricao</td>
+            </tr>
+             <tr>
+                <td style="width: 100px">Área:</td>
+                <td>$item.areaItem.descricao</td>
+            </tr>
+            <tr>
+                <td style="width: 100px">Data do Item:</td>
+                <td>$item.dataItem</td>
+            </tr>
+             #if ($item.justificativa eq 'OUTRAAREA')
+            <tr>
+            
+                <td>Justificativa:</td>
+                <td>$item.justificativa.descAbrev</td>
+            </tr>
+              #end
+               #if ($item.justificativa eq 'NAOIDENTIFICADO')
+            <tr>
+            
+                <td>Justificativa:</td>
+                <td>$item.justificativa.descAbrev</td>
+            </tr>
+              #end
+            
+        </table>
+        
+        <br/>
+       
+	            
+	   
+           
+       
+    </body>
+</html>

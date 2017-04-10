@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+
+			<f:metadata>
+				<f:event listener="#{itemsAbcBean.inicializar}" type="preRenderView" />
+			</f:metadata>
+
+			<h:form id="frmPesquisa">
+				<h1>Criticados x Classificação ABCDE</h1>
+				<p:separator></p:separator>
+
+
+
+
+				<p:dataTable id="itemsTable" value="#{itemsAbcBean.lazyModel}"
+					var="item" style="margin-top: 20px;" rowKey="item.codigo"
+					selectionMode="single" rowIndexVar="rowId"
+					emptyMessage="
+				 #{msg.nenhum_item} " paginatorPosition="bottom"
+					rows="20" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 50"
+					lazy="true">
+					<f:facet name="header">
+					Lista de Items Criticados x Classificação ABCDE
+					</f:facet>
+
+					<p:column sortBy="#{item.codigoItemAbc}" filterBy="#{item.codigoItemAbc}"
+						style="text-align: center; width: 30px">
+						<h:outputText value="#{item.codigoItemAbc}" />
+						<f:facet name="header">
+							<h:outputText value="#{msg.codigo_item}" />
+						</f:facet>
+
+					</p:column>
+					<p:column headerText="#{msg.descricao}" sortBy="#{item.descricaoAbc}"
+						filterStyle="width: 300px;" filterBy="#{item.descricaoAbc}"
+						style="text-align: left; width: 110px;">
+						<h:outputText value="#{item.descricaoAbc}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText="#{msg.criticidade}" sortBy="#{item.item.criticidade}"
+						style="text-align: center; width: 40px;">
+						<h:outputText value="#{item.item.criticidade}" />
+					</p:column>
+					
+
+					<p:column headerText="Classificação ABCDE" sortBy="#{item.abc}"
+						style="text-align: center; width: 40px;">
+						<h:outputText value="#{item.abc}" />
+					</p:column>
+
+
+
+
+				</p:dataTable>
+				<p:blockUI block="itemsTable" trigger="itemsTable">
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:blockUI>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

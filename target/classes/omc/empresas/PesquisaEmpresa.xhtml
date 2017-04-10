@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+			<script>
+				function tratarPergunta(args) {
+					if (!args.validationFailed) {
+						perguntaVar.hide();
+					}
+				}
+			</script>
+			<f:metadata>
+				<f:event listener="#{pesquisaEmpresasBean.inicializar}"
+					type="preRenderView" />
+
+			</f:metadata>
+			<h:form id="frmPesquisa">
+				<h1>#{msg.pesquisa_empresa}</h1>
+				<p:separator></p:separator>
+
+				<p:toolbar style="margin-top: 20px">
+
+					<p:toolbarGroup align="right">
+						<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+							styleClass="botao-novo" outcome="/omc/empresas/CadastroEmpresa" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:dataTable id="empresasTable"
+					value="#{pesquisaEmpresasBean.lazyModel}" var="empresa"
+					style="margin-top: 20px" rowKey="empresa.codigo"
+					selectionMode="single"
+					selection="#{pesquisaEmpresasBean.empresaSelecionada}"
+					rowIndexVar="rowId" emptyMessage="#{msg.nenhuma_empresa}"
+					paginatorPosition="bottom" rows="5" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 30"
+					lazy="true">
+					<f:facet id="header" name="header">
+                   #{msg.lista_empresas}
+                </f:facet>
+
+					<p:column headerText="#{msg.nome}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.nome}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.inscricao_estadual}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.iscricaoEstadual}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.segmento}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.segmento}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.sponsor}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.sponsor}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.total_items} "
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.totalItems}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText="#{msg.data_ini}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.dataIni}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.data_fim}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{empresa.dataFim}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+						<p:button outcome="/omc/empresas/CadastroEmpresa"
+							icon="ui-icon-pencil" title="#{msg.editar}">
+							<f:param name="empresa" value="#{empresa.codigo}" />
+						</p:button>
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaEmpresasBean.empresaSelecionada}"
+								value="#{empresa}" />
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_empresa}"
+					message="Tem certeza que deseja excluir a empresa #{pesquisaEmpresasBean.empresaSelecionada.nomeFantasia} ?"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaEmpresasBean.excluir}" process="@this"
+						update=":frmPesquisa:empresasTable" />
+				</p:confirmDialog>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

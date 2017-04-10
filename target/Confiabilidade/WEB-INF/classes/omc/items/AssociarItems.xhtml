@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+			<script>
+				function tratarAssociacao(args) {
+					if (!args.validationFailed) {
+						wassociaDlg.hide();
+					}
+				}
+			</script>
+
+
+
+
+			<h:form id="frmPesquisa">
+				<h1>#{msg.associa_items_tecnicos}</h1>
+				<p:separator></p:separator>
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton id="btnPesquisa" value="#{msg.pesquisar}"
+							action="#{associaItemsBean.pesquisar}" update="@form"
+							icon="ui-icon-search" styleClass="botao-pesquisa"
+							process="@this :frmPesquisa:descricao :frmPesquisa:status" />
+
+						<p:commandButton value="#{msg.limpar}" icon="ui-icon-trash"
+							actionListener="#{associaItemsBean.limpar}"
+							action="#{associaItemsBean.pesquisar}" update="@form"
+							process="@this  :frmPesquisa:descricao :frmPesquisa:status " />
+							
+					</p:toolbarGroup>
+
+				</p:toolbar>
+
+				<p:panelGrid columns="2" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="#{msg.descricao}" />
+					<p:inputText id="descricao" size="40"
+						value="#{associaItemsBean.filtro.descricao}" />
+
+
+					<p:outputLabel value="#{msg.status}" />
+					<p:selectManyCheckbox id="status"
+						value="#{associaItemsBean.filtro.statuses}">
+						<f:selectItems value="#{associaItemsBean.statuses}" var="status"
+							itemValue="#{status}" itemLabel="#{status.descricao}" />
+					</p:selectManyCheckbox>
+				</p:panelGrid>
+				<p:dataTable id="itemsTable" value="#{associaItemsBean.lazyModel}"
+					rowKey="item.codigo" rowIndexVar="rowId" var="item" selectionMode="single"
+					style="margin-top: 20px;" emptyMessage="
+				 #{msg.nenhum_item}"
+					paginatorPosition="bottom" rows="20" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 30"
+					lazy="true">
+
+ <f:facet name="caption">Cars</f:facet>
+					<f:facet id="header" name="header">
+                    #{msg.nenhum_item} 
+                </f:facet>
+
+					<p:column style="text-align: center; width: 40px">
+						<h:outputText value="#{item.codigoItem}" />
+						<f:facet name="header">
+							<h:outputText value="#{msg.codigo_item}" />
+						</f:facet>
+
+					</p:column>
+
+					<p:column headerText=" #{msg.descricao}"
+						style="text-align: left; width: 250px;">
+						<h:outputText value="#{item.descricao}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" #{msg.data_item}"
+						style="text-align: center; width: 70px">
+						<h:outputText value="#{item.dataItem}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.status}"
+						style="text-align: center; width: 70px;" styleClass="up">
+						<h:outputText
+							style="color:green;font:bold;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.criticado}" />
+
+						<h:outputText
+							style="color:red;font:bold;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.pendente}" />
+
+						<h:outputText style="color:blue;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.associado}" />
+
+						<h:outputText style="color:gray;text-transform:uppercase;"
+							value="#{item.status.descricao}" rendered="#{item.naoSeAplica}" />
+
+
+						<h:outputText style="color:purple;text-transform:upercase;"
+							value="#{item.justificativa.descAbrev}"
+							rendered="#{item.justificado}" />
+					</p:column>
+
+					<p:column headerText="#{msg.tecnico_area}"
+						style="text-align: center; width: 140px">
+
+
+						<h:outputText
+							value="#{item.tecnico.nome} - #{item.areaItem.descricao}" />
+
+					</p:column>
+					<p:columnGroup type="footer">
+						<p:row>
+							<p:column colspan="6" footerText="#{msg.total_items_area}"
+								style="text-align: right;background:navy;color: Snow;" />
+							<p:column style="text-align: right;background:navy;color: Snow;">
+								<f:facet name="footer">
+									<h:outputText value="#{associaItemsBean.total}" />
+
+
+								</f:facet>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="6" footerText="#{msg.total_associado}"
+								style="text-align: right;background:navy;color: Snow;" />
+							<p:column style="text-align: right;background:navy;color: Snow;">
+								<f:facet name="footer">
+									<h:outputText value="#{associaItemsBean.totalFeito}" />
+
+
+								</f:facet>
+							</p:column>
+						</p:row>
+					</p:columnGroup>
+
+					<p:column headerText="#{msg.n_a}"
+						style="text-align: center; width: 5px">
+						<p:selectBooleanCheckbox id="na" value="#{item.naoAplicavel}"
+							disabled="#{item.criticado or item.justificado}">
+							<p:ajax event="change" process="@this" update="@form"
+								listener="#{associaItemsBean.selecionar(item)}" />
+						</p:selectBooleanCheckbox>
+						<p:tooltip for="na">#{msg.nao_aplica}</p:tooltip>
+					</p:column>
+
+
+
+					<p:column style="width: 100px; text-align: center">
+						<p:commandButton value="#{msg.a}" disabled="#{not item.pendente}"
+							update=":frmPesquisa:idassociaDlg"
+							oncomplete="wassociaDlg.show()" process="@this"
+							title="Associar Item ao Técnico">
+							<f:setPropertyActionListener
+								target="#{associaItemsBean.itemSelecionado}" value="#{item}" />
+							<p:resetInput target=":frmPesquisa:idassociaDlg" />
+
+						</p:commandButton>
+
+					</p:column>
+
+
+				</p:dataTable>
+
+				<p:dialog widgetVar="wassociaDlg" id="idassociaDlg" height="200"
+					width="700" modal="true" closable="true" draggable="false"
+					resizable="false" header="#{msg.associa_tecnico}">
+					<p:messages id="dlgMensagem" />
+
+					<p:outputLabel value="#{msg.tecnicos_associar}" for="tecnico" />
+
+					<p:selectOneMenu id="tecnico" converter="usuarioConverter"
+						required="true" requiredMessage="Informe um Técnico"
+						value="#{associaItemsBean.itemSelecionado.tecnico}">
+						<f:selectItem itemLabel="#{msg.seleciona_tecnico} " />
+						<f:selectItems value="#{associaItemsBean.tecnicosDaEmpresa}"
+							var="tecnico" itemLabel="#{tecnico.nome}" itemValue="#{tecnico}" />
+					</p:selectOneMenu>
+
+
+					<p:separator />
+					<p:commandButton value="#{msg.associa}"
+						icon="ui-icon-transferthick-e-w"
+						action="#{associaItemsBean.associar}"
+						update=":frmPesquisa:itemsTable :frmPesquisa:descricao :frmPesquisa:status dlgMensagem"
+						oncomplete="tratarAssociacao(args)">
+
+					</p:commandButton>
+				</p:dialog>
+				<p:blockUI block="itemsTable" trigger="itemsTable">
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:blockUI>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

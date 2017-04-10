@@ -1,0 +1,408 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+ /**
+    * This method is fired if the locale has been changed (see attribute valueChangeListener).
+    *
+    * @param vce ValueChangeEvent
+    */
+   public void localeChanged(ValueChangeEvent vce)
+   {
+      Locale localeNew = (Locale) vce.getNewValue();
+
+      FacesContext fc = FacesContext.getCurrentInstance();
+      UIViewRoot viewRoot = fc.getViewRoot();
+
+      if (viewRoot instanceof PartialViewRoot) {
+         viewRoot = ((PartialViewRoot) viewRoot).getBase();
+      }
+
+      viewRoot.setLocale(localeNew);
+
+      // force new loading of locales, themes and time zones because the language has been changed
+      locales = null;
+      themeNames = null;
+      timeZones = null;
+   }
+
+
+Criei um exemplo manipulando arq. txt, q talvez responda a sua pergunta.Basicamente leio o arq.
+ registros.txt, adiciono cada linha numa lista, adicio palavra desejada na posiçao 5 (index começa de 0) 
+ da lista e escrevo no próprio arq. com base na lista. Veja:
+public class Exemplo {
+	 	
+    public static  List<String>  linhas = new ArrayList<String>();
+	
+	public static void main(String[] args) throws Exception {
+		 
+	   String linha6 ="PALAVRA DA LINHA 6";
+	   
+	    obterArquivo();
+	    
+	    System.out.println(linhas.size());
+	    
+	    linhas.add(5,linha6);
+	    
+	    escreverArquivo();
+ 	}
+
+	public static void escreverArquivo() throws Exception{
+		OutputStream os = new FileOutputStream("/registros.txt");
+	     OutputStreamWriter osw = new OutputStreamWriter(os);
+	     BufferedWriter bw = new BufferedWriter(osw);
+	 
+	     for (String linha: linhas){
+	    	 bw.write( linha); 
+	    	 bw.newLine();
+	    	 
+	     }
+	     bw.close();
+	}
+
+	public static  void obterArquivo() throws Exception {
+	 		InputStream is = new FileInputStream("/registros.txt"); 
+		     InputStreamReader isr = new InputStreamReader(is);
+		     BufferedReader br = new BufferedReader(isr);
+		  
+		     String linha = br.readLine(); // primeira linha
+		     int i = 1;
+		     
+		     while (linha != null) {
+		    	 
+		       System.out.println(i +"-"+linha);
+		       linhas.add( linha);
+		    
+		       linha = br.readLine() ;
+		       i++;
+		       
+		     }
+		     
+		     br.close();
+	 	
+	}
+	
+	
+	Internacionalização
+	
+
+
+down vote
+
+accepted
+ 
+
+
+the page does not load the JSF components
+
+The page is loading the components, otherwise there won't be a <input type="text" /> that comes from the <p:inputText id="user" value="#{indexMB.user}" /> in your Facelets code (along with other components). The problem seems to be in your #{bundle['<whatever>']} configuration. Note that this problem is not related to GlassFish nor TomEE at all, just about the internationalization configuration.
+
+For JSF 2.x I followed the explanation from this Q/A: http://stackoverflow.com/a/4830669/1065197 and the link that provides more info: Internationalization in JSF with UTF-8 encoded properties files. Based in that tutorial I made a test application. In short:
+
+1.Configure the bundle in your faces-config.xml
+<application>
+    <locale-config>
+        <default-locale>pt_BR</default-locale>
+        <supported-locale>en</supported-locale>
+        <supported-locale>fr</supported-locale>
+    </locale-config>
+    <resource-bundle>
+                <!--
+                    Here should be the full name of the package and the 
+                    name of the properties files with the i18n text.
+                    Example (from a personal project):
+                    edu.home.store.view.idioma.tienda
+                    Where the properties files are:
+                    edu.home.store.view.idioma.tienda_es.properties
+                    edu.home.store.view.idioma.tienda_en.properties
+                -->
+                <!-- <base-name>edu.home.store.view.idioma.tienda</base-name> -->
+                <!-- assumming your file is directly posted in class folder -->
+                <base-name>i18n</base-name>
+                <!--
+                    Name of the variable to use in Facelets files.
+                -->
+        <var>bundle</var>
+    </resource-bundle>
+</application>
+
+
+2.Create a @SessionScoped bean that will handle the locale to use in your pages.
+@ManagedBean
+@SessionScoped
+public class LocaleBean implements Serializable {
+
+    private static final long serialVersionUID = 89794215646544L;
+
+    private Locale locale;
+
+    public LocaleBean() {
+
+    }
+
+    @PostConstruct
+    public void init() {
+        //give the default value here
+        locale = new Locale("pt_BR");
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public String getLenguaje() {
+        return locale.getLanguage();
+    }
+
+    public void setLenguaje(String lenguaje) {
+        locale = new Locale(lenguaje);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
+}
+
+
+3.Wrap all the content of your view using <f:view> and define the language to use. Preferably, this should go in the main template. Example:
+<f:view locale="#{localeBean.locale}">
+    <!-- Your Facelets code goes here... -->
+</f:view>
+
+
+
+Apart from this problem, I highly recommend you to change the obviously autogenerated Faces Servlet mapping configuration from /faces/* to *.xhtml:
+<servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+</servlet-mapping>
+
+More info:
+•JSF Facelets: Sometimes I see 
+ 
+}
+
+@Lob()
+	private byte[] data;
+
+	private StreamedContent arq;
+
+	public StreamedContent getArq() {
+		return arq;
+	}
+
+	public void setArq(StreamedContent arq) {
+		this.arq = arq;
+	}
+
+	private String diretorio;
+	private String caminho;
+	private byte[] arquivo;
+	private String nome;
+
+	public UploadArquivo() {
+	}
+
+	public String getDiretorio() {
+		return this.diretorio;
+	}
+
+	public void setDiretorio(String diretorio) {
+		this.diretorio = diretorio;
+	}
+
+	public byte[] getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getRealPath() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		HttpServletResponse response = (HttpServletResponse) externalContext
+				.getResponse();
+
+		FacesContext aFacesContext = FacesContext.getCurrentInstance();
+		ServletContext context = (ServletContext) aFacesContext
+				.getExternalContext().getContext();
+
+		return context.getRealPath("/");
+	}
+
+	public void fileUpload(FileUploadEvent event, String type, String diretorio) {
+		try {
+			this.nome = new java.util.Date().getTime() + type;
+			this.caminho = getRealPath() + diretorio + getNome();
+			this.arquivo = event.getFile().getContents();
+
+			File file = new File(getRealPath() + diretorio);
+			file.mkdirs();
+			if (!file.isFile() || file.exists()) {
+
+				throw new IllegalArgumentException
+
+				("Source file '" + file.getAbsolutePath() + "' not found!");
+
+			}
+
+			if (file.length() > 10485760L) {
+
+				throw new IllegalArgumentException
+
+				("Arquivo'" + file + "é muito Grande");
+
+			}
+
+			FileInputStream fin = new FileInputStream(diretorio);
+			FileChannel channel = fin.getChannel();
+			int cs = (int) channel.size();
+			MappedByteBuffer mbb = channel.map(FileChannel.MapMode.READ_ONLY,
+					0, cs);
+			CharBuffer cb = decoder.decode(mbb);
+			regexparser(cb);
+			fin.close();
+
+		} catch (Exception ex) {
+			System.out.println("Erro no upload do arquivo" + ex);
+		}
+	}
+
+	public void Upload(FileUploadEvent event) {
+		System.out.println("Peguei o arquivo");
+
+		FacesUtil.addInfoMessage("Arquivo Importado com Sucesso!!!");
+
+		data = event.getFile().getContents();
+		String nomeArquivo = event.getFile().getFileName()
+				.substring(file.getFileName().lastIndexOf("\\") + 1);
+		String tipo = event.getFile().getContentType();
+		arq = new DefaultStreamedContent(new ByteArrayInputStream(data), tipo,
+				nomeArquivo);
+	}
+
+	public byte[] getData() {
+
+		System.out.println("Peguei o arquivo");
+		return data;
+	}
+
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
+	public void gravar() {
+
+		try {
+
+			FileOutputStream fos;
+			fos = new FileOutputStream(this.caminho);
+			fos.write(this.arquivo);
+			fos.close();
+
+		} catch (Exception ex) {
+
+			System.out.println("Erro Severo!!!" + ex);
+
+		}
+
+	}
+
+	private static Charset charset = Charset.forName("UTF-8");
+	private static CharsetDecoder decoder = charset.newDecoder();
+	String pattern = "\"([^\"]*)\"|(?<=,|^)([^,]*)(?=,|$)";
+
+	void regexparser(CharBuffer cb) {
+		Pattern linePattern = Pattern.compile(".*\r?\n");
+		Pattern csvpat = Pattern.compile(pattern);
+		Matcher lm = linePattern.matcher(cb);
+		Matcher pm = null;
+
+		while (lm.find()) {
+			CharSequence cs = lm.group();
+			if (pm == null)
+				pm = csvpat.matcher(cs);
+			else
+				pm.reset(cs);
+			while (pm.find()) {
+				CharSequence css = pm.group();
+				// print css
+			}
+			if (lm.end() == cb.limit())
+				break;
+
+		}
+
+	}
+
+	public void upload(FileUploadEvent event) {
+
+		FacesMessage msg = new FacesMessage("Success! ", event.getFile()
+				.getFileName() + " is uploaded.");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		// Do what you want with the file
+
+		try {
+
+			copyFile(event.getFile().getFileName(), event.getFile()
+					.getInputstream());
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+	public void copyFile(String fileName, InputStream in) {
+
+		try {
+
+			// write the inputStream to a FileOutputStream
+
+			OutputStream out = new FileOutputStream(new File(destination
+					+ fileName));
+
+			int read = 0;
+
+			byte[] bytes = new byte[1024];
+
+			while ((read = in.read(bytes)) != -1) {
+
+				out.write(bytes, 0, read);
+
+			}
+
+			in.close();
+
+			out.flush();
+
+			out.close();
+
+			System.out.println("New file created!");
+
+		} catch (IOException e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
+	}

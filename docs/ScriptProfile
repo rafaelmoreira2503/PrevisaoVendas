@@ -1,0 +1,10 @@
+SELECT distinct(ti.cnt),ti.codigo_tecnico,ti.codigo_item,u.nome,u.codigo
+FROM Usuario u
+-- use LEFT JOIN if you may not have a match to get zero counts
+Left JOIN (
+    SELECT codigo_tecnico,codigo_item,  COUNT(*) cnt
+    FROM tecnico_item 
+    GROUP BY codigo_tecnico
+) ti ON ti.codigo_tecnico = u.codigo
+and u.permissao='TECNICO'
+

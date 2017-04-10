@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+		<ui:define name="divMain">
+			<f:metadata>
+
+
+				<f:event listener="#{associarPerguntaEmpresaBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+
+			<h:form id="frmPerguntaEmpresa">
+
+				<h1> #{msg.associa_perguntas_empresas}</h1>
+
+				<p:separator></p:separator>
+
+				
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup>
+						<p:button value="#{msg.novo}"
+							outcome="/omc/empresas/AssociarPerguntaEmpresa"  icon="ui-icon-plusthick"
+							styleClass="botao-novo" />
+
+					</p:toolbarGroup>
+
+				</p:toolbar>
+
+
+				<div style="margin-top: 20px; margin-left: 20px;">
+
+					<p:outputLabel value="#{msg.empresas} : * " for="empresas" />
+					<p:selectOneMenu id="empresas"
+						value="#{associarPerguntaEmpresaBean.perguntaEmpresa.codigo_empresa}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa}"/>
+						<f:converter converterId="empresaConverter" />
+						<f:selectItems
+							value="#{associarPerguntaEmpresaBean.todasEmpresas}"
+							var="empresa" itemValue="#{empresa}" itemLabel="#{empresa.nome}" />
+						<p:ajax
+							listener="#{associarPerguntaEmpresaBean.carregarPerguntaAssociada()}"
+							update="perguntaAssociada" />
+						<p:ajax
+							listener="#{associarPerguntaEmpresaBean.carregarPerguntaNaoAssociada}"
+							update="perguntaNaoAssociada" />
+					</p:selectOneMenu>
+				</div>
+
+				<div style="float: left; margin-left: 20px; margin-top: 20px">
+
+
+					<p:dataTable id="perguntaNaoAssociada"
+						value="#{associarPerguntaEmpresaBean.perguntasNaoAssociadas}"
+						var="pergunta"
+						emptyMessage="" rows="5"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+						paginator="true" paginatorAlwaysVisible="true"
+						paginatorPosition="bottom">
+
+						<f:facet id="header" name="header">
+                   					#{msg.pergunta_associar}
+              					 </f:facet>
+
+						<p:column headerText="#{msg.pergunta}"
+							style="text-align: left; width: 100px">
+							<h:outputText value="#{pergunta.descricao}"
+								style="color:red;font:bold;" />
+						</p:column>
+
+						<p:column headerText="#{msg.acoes}"
+							style="width: 100px; text-align: center">
+							<p:button outcome="/omc/perguntas/CadastroPergunta"
+								icon="ui-icon-pencil" title="Editar">
+								<f:param name="pergunta" value="#{pergunta.codigo}" />
+							</p:button>
+							<p:commandButton title="#{msg.associar}" icon="ui-icon-seek-next"
+								action="#{associarPerguntaEmpresaBean.adicionarPergunta}"
+								update="@form">
+								<f:setPropertyActionListener value="#{pergunta}"
+									target="#{associarPerguntaEmpresaBean.perguntaSelecionada}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+
+				</div>
+				<div style="float: right; margin-top: 20px; margin-right: 300px">
+					<p:dataTable id="perguntaAssociada"
+						value="#{associarPerguntaEmpresaBean.perguntasAssociadas}" var="p"
+						styleClass="mystyle" emptyMessage="Nenhuma Associação Encontrada"
+						rows="8"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+						paginator="true" paginatorAlwaysVisible="true"
+						paginatorPosition="bottom">
+
+						<f:facet id="header" name="header">
+                   					 #{msg.pergunta_associada}
+              					 </f:facet>
+
+						<p:column headerText="#{msg.acoes}"
+							style="width: 100px; text-align: center">
+
+							<p:commandButton title="#{msg.desassociare}" icon="ui-icon-seek-prev"
+								action="#{associarPerguntaEmpresaBean.removerPergunta}"
+								process="@this"
+								update=":frmPerguntaEmpresa:perguntaAssociada :frmPerguntaEmpresa:perguntaNaoAssociada">
+
+								<f:setPropertyActionListener value="#{p}"
+									target="#{associarPerguntaEmpresaBean.perguntaSelecionadaAssociada}">
+
+								</f:setPropertyActionListener>
+							</p:commandButton>
+						</p:column>
+
+						<p:column headerText="#{msg.pergunta}"
+							style="text-align: left; width: 100px">
+							<h:outputText value="#{p.descricao}"
+								style="color:Green;font:bold;" />
+						</p:column>
+
+
+
+					</p:dataTable>
+				</div>
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

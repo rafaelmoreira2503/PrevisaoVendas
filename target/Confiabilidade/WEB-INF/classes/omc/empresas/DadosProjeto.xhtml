@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="6" styleClass="semBorda"
+		columnClasses="rotulo, campo, rotulo, campo">
+
+
+		<p:outputLabel value="#{msg.sponsor}" for="sponsor" />
+		<p:inputText id="sponsor" size="20" maxlength="20" styleClass="up"
+			value="#{cadastroEmpresaBean.empresa.sponsor}" />
+		<p:outputLabel />
+		<p:outputLabel />
+		<p:outputLabel />
+		<p:outputLabel />
+		<p:outputLabel value="#{msg.data_ini} :" for="dataini" />
+		<p:calendar id="dataini" size="10"
+			value="#{cadastroEmpresaBean.empresa.dataIni}"
+			locale="#{localeBean.locale}" />
+
+		<p:outputLabel value="#{msg.data_fim} :" for="datafim" />
+		<p:calendar id="datafim" size="10"
+			value="#{cadastroEmpresaBean.empresa.dataFim}"
+			locale="#{localeBean.locale}" />
+
+		<p:outputLabel value="#{msg.total_items} :" for="total" />
+		<p:inputText id="total" size="6" styleClass="date" maxlength="6"
+			value="#{cadastroEmpresaBean.empresa.totalItems}" />
+
+	</p:panelGrid>
+
+</ui:composition>

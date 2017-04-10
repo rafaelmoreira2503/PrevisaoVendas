@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+		<ui:define name="divMain">
+
+
+
+			<f:metadata>
+				<f:viewParam name="dummy" />
+
+				<f:event listener="#{importaItemAbcBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+			<div class="centro">
+
+
+
+
+				<h:form enctype="multipart/form-data">
+					<p:outputLabel value="#{msg.empresa} *  " for="empresa" />
+					<p:selectOneMenu id="empresa" converter="empresaConverter"
+						value="#{importaItemAbcBean.empresaSelecionada}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa}" />
+						<f:selectItems value="#{importaItemAbcBean.todasEmpresas}"
+							var="empresa" itemValue="#{empresa}" itemLabel="#{empresa.nome}" />
+
+
+					</p:selectOneMenu>
+					<p:outputLabel />
+					<p:outputLabel value="#{msg.procurar}" for="import" />
+					<p:fileUpload id="import" value="#{importaItemAbcBean.file}" 
+						mode="single" auto="true"
+						
+						fileUploadListener="#{importaItemAbcBean.handleFileUpload}"
+						invalidFileMessage="#{msg.somente_excel}"
+						allowTypes="/(\.|\/)(xls|xlsx)$/" />
+					<p:commandButton id="saveBtn" value="#{msg.enviar}"
+						
+						action="#{importaItemAbcBean.send}" onstart="importaDlg.show();" oncomplete="importaDlg.hide();"
+						update="empresa,saveBtn">
+
+					</p:commandButton>
+					
+					<p:dialog widgetVar="importaDlg" id="idimportaDlg" height="200"
+					width="500" modal="true" closable="false" draggable="false"
+					resizable="false" >
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:dialog>
+
+				</h:form>
+
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

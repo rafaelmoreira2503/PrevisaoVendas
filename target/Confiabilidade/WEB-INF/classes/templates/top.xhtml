@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Confiabilidade em Estoque</title>
+</h:head>
+<h:body>
+	<ui:composition>
+		<div id="topMessage">
+
+			<h:form style="display: inline-block">
+				<p:growl id="messages" />
+
+				<p:menubar styleClass="menu-sistema">
+					<p:submenu label="#{msg.principal}">
+.       		 <p:submenu label="#{msg.cadastros}">
+
+
+							<p:menuitem value="#{msg.empresas}"
+								icon="ui-icon ui-icon-extlink"
+								outcome="/omc/empresas/CadastroEmpresa"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+							<p:menuitem value="Área" outcome="/omc/areas/CadastroArea"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+							<p:menuitem value="#{msg.especialidades}"
+								outcome="/omc/especialidades/CadastroEspecialidade"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+							<p:separator />
+
+							<p:submenu label="#{msg.usuarios}" icon="ui-icon-person">
+
+								<p:menuitem value="#{msg.gerentes}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/gerentes/CadastroGerente" />
+
+								<p:menuitem value="#{msg.encarregados}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/encarregados/CadastroEncarregado" />
+								<p:menuitem value="#{msg.tecnicos}" icon="ui-icon-person"
+									disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+									outcome="/omc/tecnicos/CadastroTecnico" />
+								<p:separator />
+
+
+							</p:submenu>
+
+							<p:menuitem value="#{msg.perguntas}"
+								outcome="/omc/perguntas/CadastroPergunta"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+
+
+							<p:menuitem value="#{msg.associa_perguntas_empresas}"
+								outcome="/omc/empresas/AssociarPerguntaEmpresa"
+								disabled="#{not seguranca.cadastrarUsuarioPermitido}" />
+
+
+						</p:submenu>
+
+						<p:submenu label="Gerente">
+
+							<p:menuitem value="Verificação dos Items Criticados"
+								disabled="#{not seguranca.gerenteDoProjeto}"
+								outcome="/omc/items/ItemsCriticados" />
+
+							<p:menuitem value="Estatística por por Área"
+								disabled="#{not seguranca.gerenteDoProjeto}"
+								outcome="/omc/graficos/EstatisticaPorArea" />
+
+						</p:submenu>
+						<p:submenu label="Encarregado">
+							<p:menuitem value="#{msg.associa_items_tecnicos}"
+								disabled="#{not seguranca.encarregado}"
+								outcome="/omc/items/AssociarItems" />
+							<p:menuitem value="Estatística por por Técnico"
+								disabled="#{not seguranca.encarregado}"
+								outcome="/omc/graficos/EstatisticaEncarregado" />
+						</p:submenu>
+
+						<p:submenu label="Técnico">
+							<p:menuitem value="#{msg.controle_criticidade}"
+								disabled="#{not seguranca.tecnico}"
+								outcome="/omc/items/ControleCriticidade" />
+
+						</p:submenu>
+
+
+
+
+					</p:submenu>
+					<p:submenu label="#{msg.importacao}" icon="ui-icon-document">
+						<p:menuitem value="Importar Arquivo"
+							disabled="#{not seguranca.cadastrarUsuarioPermitido}"
+							outcome="/importar/ImportarArquivo" />
+
+
+					</p:submenu>
+
+					<p:menuitem icon="ui-icon-help" value="Ajuda" url="www.ggogle.com" />
+					<p:menuitem icon="ui-icon-home" value="#{msg.home}" url="/Home" />
+
+
+					<p:menuitem icon="ui-icon-extlink" value="#{msg.sair}"
+						url="/j_spring_security_logout" />
+
+
+				</p:menubar>
+
+
+
+			</h:form>
+
+
+		</div>
+	</ui:composition>
+</h:body>
+</html>

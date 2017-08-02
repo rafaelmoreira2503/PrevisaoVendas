@@ -5,9 +5,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>br.com.Confiabilidade</groupId>
+	<groupId>br.com.ProvisaoVendas</groupId>
 
-	<artifactId>Confiabilidade</artifactId>
+	<artifactId>PrevisaoVendas</artifactId>
 
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -29,6 +29,14 @@
 			<version>5.0.1.Final</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.4</version>
+		</dependency>
+
 
 		<!-- Weld (implementação do CDI) -->
 		<dependency>
@@ -255,7 +263,7 @@
 
 	<build>
 
-		<finalName>Confiabilidade</finalName>
+		<finalName>PrevisaoVendas</finalName>
 
 		<plugins>
 
@@ -264,8 +272,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 
 			</plugin>

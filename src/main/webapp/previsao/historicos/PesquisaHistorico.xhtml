@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+			<f:event listener="#{pesquisaHistoricosBean.inicializar}"
+				type="preRenderView" />
+			<h:form id="frmPesquisa" >
+				<h1>Historico de Vendas</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup align="left">
+						<p:commandButton id="btnPesquisa" value="#{msg.pesquisar}"
+							icon="ui-icon-search" styleClass="botao-pesquisa"
+							action="#{pesquisaHistoricosBean.pesquisar}" update="@form"
+							process="@this :frmPesquisa:empresa " />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:toolbarGroup align="right">
+							<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+								styleClass="botao-novo" outcome="/previsao/historicos/PesquisaHistorico" />
+						</p:toolbarGroup>
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:panelGrid columns="2" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+
+					<p:outputLabel value="#{msg.empresa} : *" for="empresa" />
+					<p:selectOneMenu id="empresa" converter="empresaConverter"
+						value="#{pesquisaHistoricosBean.empresaSelecionada}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa} " />
+						<f:selectItems value="#{pesquisaHistoricosBean.listaDeEmpresas}"
+							var="empresas" itemValue="#{empresas}"
+							itemLabel="#{empresas.nome} - #{empresas.cnpj}"/>
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+				<p:dataTable id="historicosTable"
+					value="#{pesquisaHistoricosBean.lazyModel}" var="historico"
+					style="margin-top: 20px" emptyMessage="#{msg.nenhum_tecnico}"
+					rowKey="historico.codigo" selectionMode="single"
+					selection="#{pesquisaHistoricosBean.historicoSelecionado}"
+					paginatorPosition="bottom" rows="5" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					styleClass="mystyle" paginatorAlwaysVisible="true"
+					rowsPerPageTemplate="10, 20, 30" lazy="true">
+
+					<f:facet id="header" name="header">
+                        lista de Historicos
+                    </f:facet>
+
+					<p:column headerText=" Codigo do Produto" sortBy="#{historico.produto.codigoProduto}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{historico.produto.codigoProduto}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" Descrição"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{historico.produto.descricao}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Valor"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{historico.produto.valor}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Meses"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{historico.mesesHistoricos}"  >
+							<f:convertDateTime pattern="MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" Quantidade"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{historico.quantidade}">
+
+						</h:outputText>
+					</p:column>
+
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+						
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaHistoricosBean.historicoSelecionado}"
+								value="#{tecnico}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_tecnico}"
+					
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaHistoricosBean.excluir}" process="@this"
+						update=":frmPesquisa:historicosTable" />
+				</p:confirmDialog>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

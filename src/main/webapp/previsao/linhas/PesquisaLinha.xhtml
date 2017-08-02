@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+			<f:metadata>
+
+				<f:event listener="#{pesquisaLinhasBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+			<h:form id="frmPesquisa">
+
+
+
+				<h1>Pesquisa de Linhas</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup align="right">
+						<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+							styleClass="botao-novo" outcome="/previsao/linhas/CadastroLinha" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:dataTable id="linhasTable"
+					value="#{pesquisaLinhasBean.lazyModel}" var="linha"
+					style="margin-top: 20px;" 
+					emptyMessage="#{msg.nenhuma_linha}" paginatorPosition="bottom"
+					
+					rows="20"
+					paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 30"
+					lazy="true">
+
+					<f:facet name="header">
+					  #{msg.lista_linhas}
+					</f:facet>
+
+					<p:column headerText="Descrição da Linha" sortBy="#{linha.descricao}">
+
+						<h:outputText value="#{linha.descricao}" />
+
+					</p:column>
+					<p:column headerText="Descrição da Familia" >
+
+						<h:outputText value="#{linha.familia.descricao}" />
+
+					</p:column>
+					<p:column headerText="Filial" >
+
+						<h:outputText value="#{linha.gerenteFilial.nome}" />
+
+					</p:column>
+					
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+						<p:button outcome="/previsao/linhas/CadastroLinha"
+							icon="ui-icon-pencil" title="#{msg.editar}">
+							<f:param name="linha" value="#{linha.codigo}" />
+						</p:button>
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaLinhasBean.linhaSelecionada}" value="#{linha}" />
+						</p:commandButton>
+					</p:column>
+
+
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_linha}"
+					message="#{msg.deleta_linha.concat(' ') .concat(pesquisaLinhasBean.linhaSelecionada.descricao)} ?"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaLinhasBean.excluir}" process="@this"
+						update=":frmPesquisa:linhasTable" />
+				</p:confirmDialog>
+
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

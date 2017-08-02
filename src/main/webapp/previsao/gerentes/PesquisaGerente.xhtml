@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+			<f:event listener="#{pesquisaGerentesBean.inicializar}"
+				type="preRenderView" />
+			<h:form id="frmPesquisa">
+				<h1>Pesquisa Diretores de Venda</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+
+					<p:toolbarGroup align="right">
+						<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+							styleClass="botao-novo" outcome="/previsao/gerentes/CadastroGerente" />
+					</p:toolbarGroup>
+
+					<p:toolbarGroup align="left">
+						<p:commandButton id="btnPesquisa" value="#{msg.pesquisa}"
+							icon="ui-icon-search" styleClass="botao-pesquisa"
+							action="#{pesquisaGerentesBean.pesquisar}" update="@form"
+							process="@this :frmPesquisa:empresa " />
+
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:toolbarGroup>
+
+
+				</p:toolbarGroup>
+
+				<p:panelGrid columns="2" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+
+					<p:outputLabel value="#{msg.empresa} : *" for="empresa" />
+					<p:selectOneMenu id="empresa" converter="empresaConverter"
+						value="#{pesquisaGerentesBean.empresaSelecionada}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa}" />
+						<f:selectItems value="#{pesquisaGerentesBean.listaDeEmpresas}"
+							var="empresas" itemValue="#{empresas}"
+							itemLabel="#{empresas.nome}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:dataTable id="gerentesTable"
+					value="#{pesquisaGerentesBean.lazyModel}" var="gerente"
+					rowKey="gerente.codigo" selectionMode="single"
+					selection="#{pesquisaGerentesBean.gerenteSelecionado}"
+					rowIndexVar="rowId" style="margin-top: 20px"
+					emptyMessage="Nenhum Diretor de Venda Encontrado" paginatorPosition="bottom"
+					rows="5" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					styleClass="mystyle" paginatorAlwaysVisible="true"
+					rowsPerPageTemplate="10, 20, 30" lazy="true">
+					<f:facet id="header" name="header">
+                   Lista de Diretores de Venda
+                </f:facet>
+
+					<p:column headerText="Diretores de Venda" sortBy="#{gerente.nome}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{gerente.nome}">
+
+						</h:outputText>
+					</p:column>
+
+
+
+
+
+					<p:column headerText="#{msg.telefone_celular}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{gerente.telefone.celular}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Gerentes Regionais"
+						style="text-align: left; width: 160px">
+						<ui:repeat var="sub" value="#{gerente.subordinados}" varStatus="status">
+							<h:outputFormat value="{0}{1}">
+								<f:param value="#{sub.nome}" />
+								<f:param value="#{status.last ? '' : ', '}" />
+							</h:outputFormat>
+						</ui:repeat>
+						
+						
+
+					</p:column>
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+						<p:button outcome="/previsao/gerentes/CadastroGerente"
+							icon="ui-icon-pencil" title="#{msg.editar}">
+							<f:param name="gerente" value="#{gerente.codigo}" />
+						</p:button>
+						<p:commandButton icon="ui-icon-trash" title="#{msg.editar}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaGerentesBean.gerenteSelecionado}"
+								value="#{gerente}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_gerente}"
+					message="#{msg.deleta_gerente.concat(' ') .concat(pesquisaGerentesBean.gerenteSelecionado.nome)} ?"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaGerentesBean.excluir}" process="@this"
+						update=":frmPesquisa:gerentesTable" />
+				</p:confirmDialog>
+
+
+
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

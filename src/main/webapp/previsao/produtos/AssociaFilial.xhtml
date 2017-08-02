@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+		<script>
+				function tratarAssociacao(args) {
+					if (!args.validationFailed) {
+						wassociaDlg.hide();
+					}
+				}
+			</script>
+		
+			<f:event listener="#{associaFilialBean.inicializar}"
+				type="preRenderView" />
+			<h:form id="frmPesquisa">
+				<h1>Pesquisa de Produto</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup align="left">
+						<p:commandButton id="btnPesquisa" value="#{msg.pesquisar}"
+							icon="ui-icon-search" styleClass="botao-pesquisa"
+							action="#{associaFilialBean.pesquisar}" update="@form"
+							process="@this :frmPesquisa:empresa " />
+					</p:toolbarGroup>
+
+					
+				</p:toolbar>
+
+				<p:panelGrid columns="2" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+
+					<p:outputLabel value="#{msg.empresa} : *" for="empresa" />
+					<p:selectOneMenu id="empresa" converter="empresaConverter"
+						value="#{associaFilialBean.empresaSelecionada}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa} " />
+						<f:selectItems value="#{associaFilialBean.listaDeEmpresas}"
+							var="empresas" itemValue="#{empresas}"
+							itemLabel="#{empresas.nome}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+
+				<p:dataTable id="produtosTable"
+					value="#{associaFilialBean.lazyModel}" var="produto"
+					style="margin-top: 20px" emptyMessage="Nenhum Produto Encontrado"
+							
+					paginatorPosition="bottom" rows="5" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					styleClass="mystyle" paginatorAlwaysVisible="true"
+					rowsPerPageTemplate="10, 20, 30" lazy="true">
+
+					<f:facet id="header" name="header">
+                   lista de Produtos
+                </f:facet>
+
+					<p:column headerText=" Codigo do Produto"
+						sortBy="#{produto.produto.codigoProduto}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.codigoProduto}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" Descrição"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.descricao}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Filial"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.codigoFilial}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Valor"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.valor}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Gerente Filial"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.gerenteFilial.nome}">
+
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText=" Linha"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.linha.descricao}">
+
+						</h:outputText>
+					</p:column>
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{associaFilialBean.produtoSelecionado}"
+								value="#{produto}" />
+						</p:commandButton>
+					</p:column>
+					
+					
+					<p:column style="width: 100px; text-align: center">
+						<p:commandButton value="Associa Gerente Filial"
+							update=":frmPesquisa:idassociaDialog"
+							oncomplete="wassociaDlg.show()" process="@this"
+							title="Associar Gerente Filial ao Produto">
+							<f:setPropertyActionListener
+								target="#{associaFilialBean.produtoSelecionado}" value="#{produto}" />
+							<p:resetInput target=":frmPesquisa:idassociaDialog" />
+
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog header="Ecluir Produto"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{associaFilialBean.excluir}" process="@this"
+						update=":frmPesquisa:produtosTable" />
+				</p:confirmDialog>
+				
+				
+				<p:dialog widgetVar="wassociaDlg" id="idassociaDialog" height="200"
+					width="700" modal="true" closable="true" draggable="false"
+					resizable="false" header="#{msg.associa_tecnico}">
+					<p:messages id="mensagem" />
+
+					<p:outputLabel value="Gerentes Filiais para Associar" for="gerentefilial" />
+
+					<p:selectOneMenu id="gerentefilial" 
+						required="true" requiredMessage="Informe um Gerente Filial"
+						value="#{associaFilialBean.produtoSelecionado.gerenteFilial}"  converter="usuarioConverter">
+						<f:selectItem itemLabel="--- Selecione uma Gerente---" />
+						<f:selectItems value="#{associaFilialBean.gerentesDaFilialDaEmpresa}"
+							var="geremnteFilial" itemLabel="#{geremnteFilial.nome}" itemValue="#{geremnteFilial}" />
+					</p:selectOneMenu>
+
+
+					<p:separator />
+					<p:commandButton value="#{msg.associa}"
+						icon="ui-icon-transferthick-e-w"
+						action="#{associaFilialBean.associar}"
+						update=":frmPesquisa:produtosTable :frmPesquisa:empresa mensagem"
+						oncomplete="tratarAssociacao(args)">
+
+					</p:commandButton>
+				</p:dialog>
+				
+				<p:blockUI block="produtosTable" trigger="produtosTable">
+					<p:panelGrid columns="1" styleClass="semBorda">
+						<h:outputText value="#{msg.aguarde}" />
+						<p:graphicImage library="images" name="ajax-loader.gif" />
+					</p:panelGrid>
+				</p:blockUI>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

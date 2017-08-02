@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+		<ui:define name="divMain">
+			<f:metadata>
+				<o:viewParam name="linha" value="#{cadastroLinhasBean.linha}" />
+				<f:event listener="#{cadastroLinhasBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+			<h:form id="frmCadastro">
+
+				<h1>#{cadastroLinhasBean.editando ? msg.editar_linha :
+					msg.cadastrar_linha}</h1>
+				<p:outputLabel value="#{msg.campo_obrigatorio}"
+					style="color:red;margin-left:100px;" />
+				<p:separator></p:separator>
+
+
+				<p:focus context="frmCadastro" />
+
+
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+							styleClass="botao-novo" outcome="/previsao/linhas/CadastroLinha" />
+						<p:commandButton value="#{msg.salvar}" icon="ui-icon-disk"
+							styleClass="botao-salvar" action="#{cadastroLinhasBean.salvar}"
+							update="@form" />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:button value="Pesquisa de Linhas" icon="ui-icon-search"
+							styleClass="botao-pesquisa"
+							outcome="/previsao/linhas/PesquisaLinha">
+							<f:param name="linha" value="#{linha.codigo}" />
+						</p:button>
+					</p:toolbarGroup>
+				</p:toolbar>
+
+
+				<p:panelGrid columns="2" styleClass="semBorda"
+					columnClasses="rotulo, campo">
+
+					<p:outputLabel value="#{msg.linha} : *" for="linha" />
+					<p:inputText id="linha" size="100" maxlength="100"
+						style="text-transform: uppercase"
+						value="#{cadastroLinhasBean.linha.descricao}" />
+
+					<p:outputLabel value="#{msg.empresas}" for="empresa" />
+					<p:selectOneMenu id="empresa" converter="empresaConverter"
+						value="#{cadastroLinhasBean.empresa}">
+						<f:selectItem itemLabel="#{msg.seleciona_empresa} " />
+						<f:selectItems value="#{cadastroLinhasBean.empresasRaizes}"
+							var="empresa" itemValue="#{empresa}" itemLabel="#{empresa.nome}" />
+
+						<p:ajax listener="#{cadastroLinhasBean.carregarFamilia}"
+							update="familia" />
+						<p:ajax listener="#{cadastroLinhasBean.carregarGerentesFiliais}"
+							update="gerenteFilial" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="familia : *" for="familia" />
+					<p:selectOneMenu id="familia" required="true"
+						value="#{cadastroLinhasBean.linha.familia}">
+						<f:selectItem itemLabel="-- Selecione uma Família -- " />
+						<f:selectItems value="#{cadastroLinhasBean.familiasRaizes}"
+							var="familia" itemValue="#{familia}"
+							itemLabel="#{familia.descricao}" />
+
+
+					</p:selectOneMenu>
+					<p:outputLabel value="Gerente Filial : *" for="gerenteFilial" />
+					<p:selectOneMenu id="gerenteFilial" required="true" converter="usuarioConverter"
+						value="#{cadastroLinhasBean.linha.gerenteFilial}">
+						<f:selectItem itemLabel="-- Selecione uma Gerente Filial -- " />
+						<f:selectItems value="#{cadastroLinhasBean.usuariosRaizes}"
+							var="gerenteFilial" itemValue="#{gerenteFilial}"
+							itemLabel="#{gerenteFilial.nome}" />
+
+
+					</p:selectOneMenu>
+
+
+				</p:panelGrid>
+
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

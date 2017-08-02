@@ -8,11 +8,11 @@
 	<application>
 
 		<resource-bundle>
-			<base-name>br.com.confiabilidade.sistema</base-name>
+			<base-name>br.com.previsao.sistema</base-name>
 			<var>msg</var>
 		</resource-bundle>
 		
-		<message-bundle>br.com.confiabilidade.Messages</message-bundle>
+		<message-bundle>br.com.previsao.Messages</message-bundle>
 
 		<locale-config>
 
@@ -24,7 +24,7 @@
 
 	<factory>
 		<exception-handler-factory>
-			br.com.confiabilidade.util.jsf.JsfExceptionHandlerFactory
+			br.com.previsao.util.jsf.JsfExceptionHandlerFactory
 		</exception-handler-factory>
 	</factory>
 

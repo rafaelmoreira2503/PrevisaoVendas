@@ -6,7 +6,7 @@
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<beans:bean id="appUserDetailsService"
-		class="br.com.confiabilidade.security.AppUserDetailsService" />
+		class="br.com.previsao.security.AppUserDetailsService" />
 
 	<beans:bean id="exceptionTranslationFilter"
 		class="org.springframework.security.web.access.ExceptionTranslationFilter">
@@ -15,19 +15,19 @@
 	</beans:bean>
 
 	<beans:bean id="jsfAccessDeniedHandler"
-		class="br.com.confiabilidade.security.JsfAccessDeniedHandler">
+		class="br.com.previsao.security.JsfAccessDeniedHandler">
 		<beans:property name="loginPath" value="/AcessoNegado.xhtml" />
 		<beans:property name="contextRelative" value="true" />
 	</beans:bean>
 
 	<beans:bean id="authenticationEntryPoint"
-		class="br.com.confiabilidade.security.JsfLoginUrlAuthenticationEntryPoint">
+		class="br.com.previsao.security.JsfLoginUrlAuthenticationEntryPoint">
 		<beans:property name="loginFormUrl" value="/Login.xhtml" />
 		<beans:property name="redirectStrategy" ref="jsfRedirectStrategy" />
 	</beans:bean>
 
 	<beans:bean id="jsfRedirectStrategy"
-		class="br.com.confiabilidade.security.JsfRedirectStrategy" />
+		class="br.com.previsao.security.JsfRedirectStrategy" />
 
 	<http pattern="/Login.xhtml" security="none" />
 	<http pattern="/Erro.xhtml" security="none" />
@@ -41,17 +41,27 @@
 		
 		<intercept-url pattern="/importar/**"	access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/areas/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/empresas/**" access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/empresas/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/familias/**" access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/gerentes/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/linhas/**" access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/encarregados/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/gerentes/**" access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/tecnicos/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/encarregados/**" access="hasAnyRole('OMC')" />
 		
-		<intercept-url pattern="/omc/especialidades/**" access="hasAnyRole('OMC')" />
+		<intercept-url pattern="/previsao/tecnicos/**" access="hasAnyRole('OMC')" />
+		
+		<intercept-url pattern="/previsao/historicos/PesquisaHistorico.xhtml" access="hasAnyRole('OMC')" />
+		
+		<intercept-url pattern="/previsao/historicos/PesquisaPrevisao.xhtml" access="hasAnyRole('GERENTEFILIAL')" />
+		
+		<intercept-url pattern="/previsao/historicos/PesquisaGerenteRegional.xhtml" access="hasAnyRole('GERENTEREGIONAL')" />
+		
+		<intercept-url pattern="/previsao/historicos/PesquisaDiretor.xhtml" access="hasAnyRole('DIRETOR')" />
+		
+		<intercept-url pattern="/previsao/produtos/**" access="hasAnyRole('OMC')" />
 				
 		<intercept-url pattern="/omc/graficos/**" access="isAuthenticated()" />
 		

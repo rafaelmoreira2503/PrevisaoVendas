@@ -13,7 +13,7 @@ public class QueryTester {
 	public static void main(String[] args) throws Exception {
 		
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("ConfiabilidadePU");
+				.createEntityManagerFactory("PrevisaoVendasPU");
 		EntityManager em = emf.createEntityManager();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				System.in));

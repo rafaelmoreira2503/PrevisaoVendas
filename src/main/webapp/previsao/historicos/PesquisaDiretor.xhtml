@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+			<f:event listener="#{previsaoDiretorBean.inicializar}"
+				type="preRenderView" />
+			<h:form id="frmPesquisa">
+				<h1>Autoriza Previões</h1>
+				<p:separator></p:separator>
+
+
+				<p:dataTable id="previsaosTable"
+					value="#{previsaoDiretorBean.listaDePrevisoes}" var="produto"
+					style="margin-top: 20px" emptyMessage="#{msg.nenhum_tecnico}"
+					paginatorPosition="bottom" rows="10" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					styleClass="mystyle" paginatorAlwaysVisible="true"
+					rowsPerPageTemplate="10, 20, 30">
+
+					<f:facet id="header" name="header">
+                        lista de Historicos
+                    </f:facet>
+
+					<p:column headerText=" Codigo do Produto"
+						sortBy="#{produto.codigoProduto}"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.codigoProduto}">
+
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" Descrição"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.descricao}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Gerente Filial"
+						style="text-align: left; width: 140px">
+						<h:outputText value="#{produto.filial}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Valor"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.valor}">
+
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText=" Quantidade"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.quantidade}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"
+								maxFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText=" Soma"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.soma}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"
+								maxFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText=" Receita Total"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.receita}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"
+								maxFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:columnGroup type="footer">
+						<p:row>
+							<p:column colspan="6" footerText="Receita Total :"
+								style="text-align: right;background:navy;color: Snow;" />
+							<p:column style="text-align: right;background:navy;color: Snow;">
+								<f:facet name="footer">
+									<h:outputText value="#{previsaoDiretorBean.total}" >
+									<f:convertNumber locale="pt_BR" minFractionDigits="2"
+										maxFractionDigits="2" />
+									</h:outputText>
+
+								</f:facet>
+							</p:column>
+						</p:row>
+					</p:columnGroup>
+
+
+				</p:dataTable>
+
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

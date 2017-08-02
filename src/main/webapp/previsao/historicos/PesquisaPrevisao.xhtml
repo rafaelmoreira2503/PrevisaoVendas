@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+			<script>
+				function tratarAssociacao(args) {
+					if (!args.validationFailed) {
+						userDialog.hide();
+					}
+				}
+			</script>
+			<f:event listener="#{pesquisaPrevisaoBean.inicializar}"
+				type="preRenderView" />
+			<h:form id="frmPesquisa">
+				<h1>Previsão de vendas</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+
+					<p:toolbarGroup align="left">
+						<p:commandButton id="btnPesquisa" value="#{msg.pesquisar}"
+							icon="ui-icon-search" styleClass="botao-pesquisa"
+							action="#{pesquisaPrevisaoBean.pesquisar}" update="@form"
+							process="@this :frmPesquisa:linha " />
+							
+							<p:commandButton value="#{msg.limpar}" icon="ui-icon-trash"
+							actionListener="#{pesquisaPrevisaoBean.limpar}"
+							action="#{pesquisaPrevisaoBean.pesquisar}" update="@form"
+							process="@this  " />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:panelGrid columns="2" id="painel"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+
+					<p:outputLabel value="Familia : *" for="familia" />
+					<p:selectOneMenu id="familia"
+						value="#{pesquisaPrevisaoBean.familiaSelecionada}">
+						<f:selectItem itemLabel="--- Selecione uma Familia ---" />
+						<f:selectItems value="#{pesquisaPrevisaoBean.familiasDaEmpresa}"
+							var="familia" itemValue="#{familia}"
+							itemLabel="#{familia.descricao}" />
+
+						<p:ajax
+							listener="#{pesquisaPrevisaoBean.carregarLinhasComFamilia}"
+							update="linha" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Linha : *" for="linha" />
+					<p:selectOneMenu id="linha"
+						value="#{pesquisaPrevisaoBean.linhaSelecionada}">
+						<f:selectItem itemLabel="-- Selecione uma Linha -- " />
+						<f:selectItems value="#{pesquisaPrevisaoBean.linhasDaEmpresa}"
+							var="linha" itemValue="#{linha}" itemLabel="#{linha.descricao}" />
+
+
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+
+
+				<p:remoteCommand name="rc"
+					actionListener="#{pesquisaPrevisaoBean.onCellEdit}"
+					update=":frmPesquisa:produtosTable" />
+
+
+				<p:dataTable id="produtosTable"
+					value="#{pesquisaPrevisaoBean.lazyModel}" var="produto"
+					style="margin-top: 20px" emptyMessage="Nenhuma Previsão Encontrada"
+					paginatorPosition="bottom" rows="5" paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					styleClass="mystyle" paginatorAlwaysVisible="true"
+					rowsPerPageTemplate="10, 20, 30" lazy="true">
+
+					<f:facet id="header" name="header">
+                   Previsão de Vendas
+                </f:facet>
+
+
+					<p:column headerText=" Codigo do Produto"
+						sortBy="#{produto.codigoProduto}"
+						style="text-align: center; width: 140px">
+
+						<p:commandLink value="#{produto.codigoProduto}"
+							update=":userDetailForm:display" oncomplete="userDialog.show()"
+							title="View">
+							<f:setPropertyActionListener value="#{produto}"
+								target="#{pesquisaPrevisaoBean.previsaoSelecionada}" />
+						</p:commandLink>
+					</p:column>
+
+					<p:column headerText=" Descrição"
+						style="text-align: center; width: 140px">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{produto.descricao}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{produto.descricao}" />
+							</f:facet>
+						</p:cellEditor>
+
+
+					</p:column>
+					<p:column headerText=" Filial"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.codigoFilial}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Custo Unitário"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.valor}">
+
+						</h:outputText>
+					</p:column>
+					
+					
+					<p:column headerText=" Fator de Alisamento"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.fatorAmortecimentoExponencial}">
+
+						</h:outputText>
+						
+						
+					</p:column>
+
+					<p:column headerText=" Previsão1"
+						style="text-align: center; width: 140px">
+						<h:outputText value="#{produto.quantidadeRecente}">
+
+						</h:outputText>
+					</p:column>
+					<p:column headerText=" Previsão2"
+						style="text-align: center; width: 140px">
+
+						<h:outputText value="#{produto.quantidadeRecente}">
+
+						</h:outputText>
+
+					</p:column>
+
+					<p:column headerText=" Previsão3"
+						style="text-align: center; width: 140px">
+
+						<h:outputText value="#{produto.quantidadeRecente}">
+
+						</h:outputText>
+
+					</p:column>
+					<p:column headerText=" Receita da Previsão"
+						style="text-align: center; width: 140px">
+
+						<h:outputText value="#{produto.quantidadeReais}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"
+								maxFractionDigits="2" />
+						</h:outputText>
+
+					</p:column>
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaPrevisaoBean.previsaoSelecionada}"
+								value="#{previsao}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_tecnico}"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaPrevisaoBean.excluir}" process="@this"
+						update=":frmPesquisa:produtosTable" />
+				</p:confirmDialog>
+
+			</h:form>
+			<p:dialog header="Alterar Previsão" widgetVar="userDialog"
+				resizable="false" id="userDlg">
+				<h:form id="userDetailForm">
+					<p:panelGrid id="display" columns="4" cellpadding="4"
+						style="margin:0 auto;">
+
+
+						<p:outputLabel value="Ultimo Ano:" for="ultimoAno" />
+						<p:inputText id="ultimoAno" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.anoAnterior}" />
+
+						<p:outputLabel value="Quantidade:" for="quantidade" />
+						<p:inputText id="quantidade" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.ultimaQuantidade}" />
+
+
+						<p:outputLabel value="terceiro Mês:" for="terceiroMes" />
+						<p:inputText id="terceiroMes" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.terceiroMesAnterior}" />
+
+						<p:outputLabel value="Quantidade:" for="quantidade4" />
+						<p:inputText id="quantidade4" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.terceiraQuantidade}" />
+
+
+						<p:outputLabel value="Penultimo Mês:" for="segundoMes" />
+						<p:inputText id="segundoMes" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.segundoMesAnterior}" />
+
+						<p:outputLabel value="Quantidade:" for="quantidade3" />
+						<p:inputText id="quantidade3" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.segundaQuantidade}" />
+
+
+						<p:outputLabel value="Ùltimo mês:" for="primeiroMes" />
+						<p:inputText id="primeiroMes" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.primeiroMesAnterior}" />
+
+						<p:outputLabel value="Quantidade:" for="quantidade1" />
+						<p:inputText id="quantidade1" disabled="true"
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.primeiraQuantidade}" />
+
+						<h:outputText value="Previsao:"></h:outputText>
+
+						<h:inputText
+							value="#{pesquisaPrevisaoBean.previsaoSelecionada.quantidadeRecente}" />
+
+
+						<f:facet name="footer">
+							<p:commandButton id="alterar" value="Alterar"
+								update=":frmPesquisa:produtosTable"
+								oncomplete="tratarAssociacao(args)"
+								actionListener="#{pesquisaPrevisaoBean.alterarPrevisao}" />
+						</f:facet>
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

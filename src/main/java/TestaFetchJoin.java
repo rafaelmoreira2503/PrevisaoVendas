@@ -8,7 +8,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import br.com.confiabilidade.model.Usuario;
+import br.com.previsao.model.Usuario;
 
 public class TestaFetchJoin {
 
@@ -97,7 +97,7 @@ public class TestaFetchJoin {
 				System.out.println(" Impressão de Encarregados da Empresa: ");
 				System.out.println(" Nome : " + usuEncarregado.getCodigo());
 				System.out.println(" Nome : " + usuEncarregado.getNome());
-				System.out.println(" Nome : " + usuEncarregado.getAreaEncarregado());
+				//System.out.println(" Nome : " + usuEncarregado.getAreaEncarregado());
 
 			}
 			// Quantidade de Encarregados

@@ -1,0 +1,13 @@
+<historico>
+  <mesesHistoricos resolves-to="java.time.Ser">
+    <byte>3</byte>
+    <int>2017</int>
+    <byte>4</byte>
+    <byte>25</byte>
+  </mesesHistoricos>
+  <quantidade>10</quantidade>
+  <produto>
+    <descricao>Limão + Coco</descricao>
+    <valor>5.80</valor>
+  </produto>
+</historico>

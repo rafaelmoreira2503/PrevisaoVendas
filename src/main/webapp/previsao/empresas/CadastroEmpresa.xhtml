@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+			<f:metadata>
+				<o:viewParam name="empresa" value="#{cadastroEmpresaBean.empresa}"
+					converter="empresaConverter" />
+
+			</f:metadata>
+			<h:form id="frmCadastro">
+				<h1>#{cadastroEmpresaBean.editando ?  msg.editar_empresa:
+					msg.cadastrar_empresa}</h1>
+					<p:outputLabel value="#{msg.campo_obrigatorio}" style="color:red;margin-left:100px;" />
+				<p:separator></p:separator>
+				
+				<p:focus context="frmCadastro" />
+				
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:button value="#{msg.novo}"  outcome="/previsao/empresas/CadastroEmpresa" styleClass="botao-novo"
+							icon="ui-icon-plusthick" />
+						<p:commandButton value="#{msg.salvar}" icon="ui-icon-disk" styleClass="botao-salvar"
+							
+							action="#{cadastroEmpresaBean.salvar}" update="@form" />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:button value="#{msg.pesquisa}" outcome="/previsao/empresas/PesquisaEmpresa" styleClass="botao-pesquisa"
+							icon="ui-icon-search" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+
+				<ui:include src="/previsao/empresas/CapaEmpresa.xhtml" />
+
+				<p:tabView style="margin-top: 20px">
+					<p:tab title="#{msg.endereco}" >
+						<ui:include src="/previsao/empresas/DadosEndereco.xhtml" />
+					</p:tab>
+					<p:tab title="#{msg.projeto}" >
+						<ui:include src="/previsao/empresas/DadosProjeto.xhtml" />
+					</p:tab>
+
+				</p:tabView>
+
+
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

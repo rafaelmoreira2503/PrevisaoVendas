@@ -5,7 +5,7 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
 
 	<interceptors>
-		<class>br.com.confiabilidade.util.jpa.TransactionInterceptor</class>
+		<class>br.com.previsao.util.jpa.TransactionInterceptor</class>
 	</interceptors>
 
 </beans>

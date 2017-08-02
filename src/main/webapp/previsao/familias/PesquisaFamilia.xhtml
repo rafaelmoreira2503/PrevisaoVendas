@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/master.xhtml">
+
+		<ui:define name="divMain">
+
+			<f:metadata>
+
+				<f:event listener="#{pesquisaFamiliasBean.inicializar}"
+					type="preRenderView" />
+			</f:metadata>
+
+			<h:form id="frmPesquisa">
+
+
+
+				<h1>Pesquisa de Familias</h1>
+				<p:separator></p:separator>
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup align="right">
+						<p:button value="#{msg.novo}" icon="ui-icon-plusthick"
+							styleClass="botao-novo"
+							outcome="/previsao/familias/CadastroFamilia" />
+					</p:toolbarGroup>
+				</p:toolbar>
+				
+
+				<p:dataTable id="familiasTable"
+					value="#{pesquisaFamiliasBean.lazyModel}" var="familia"
+					 style="margin-top: 20px;"
+					selection="#{pesquisaFamiliasBean.listaDeFamilias}"
+					emptyMessage="Nenhuma Familia Encontrada"
+					paginatorPosition="bottom" rowKey="#{familia.codigo}" rows="20"
+					paginator="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					currentPageReportTemplate="(#{msg.pagina} {currentPage} #{msg.de} {totalPages}) - (#{msg.registro} {startRecord} #{msg.a} {endRecord}) - Total ({totalRecords} #{msg.registros})"
+					paginatorAlwaysVisible="true" rowsPerPageTemplate="10, 20, 30"
+					lazy="true" >
+				
+				
+
+					<f:facet name="header">
+					  #{msg.lista_linhas}
+					</f:facet>
+					<p:column selectionMode="multiple" style="width:18px" />
+					<p:column sortBy="#{familia.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Descrição da Familia" />
+						</f:facet>
+						<p:commandLink value="#{familia.descricao}"
+							update=":userDetailForm:display" oncomplete="userDialog.show()"
+							title="View">
+							<f:setPropertyActionListener value="#{familia}"
+								target="#{pesquisaFamiliasBean.familiaSelecionada}" />
+						</p:commandLink>
+
+					</p:column>
+					<p:column headerText="Descrição Empresa">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{familia.empresa.nome}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{familia.empresa.nome}" />
+							</f:facet>
+						</p:cellEditor>
+
+
+					</p:column>
+
+
+					<p:column style="width: 100px; text-align: center"
+						headerText="#{msg.acoes}">
+						<p:button outcome="/previsao/familias/CadastroFamilia"
+							icon="ui-icon-pencil" title="#{msg.editar}">
+							<f:param name="familia" value="#{familia.codigo}" />
+						</p:button>
+						<p:commandButton icon="ui-icon-trash" title="#{msg.excluir}"
+							oncomplete="confirmacaoExclusao.show()" process="@this"
+							update=":frmPesquisa:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener
+								target="#{pesquisaFamiliasBean.familiaSelecionada}"
+								value="#{familia}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<p:commandButton value="New User"
+							oncomplete="newUserDialog.show()" icon="ui-icon-star"
+							title="Criar Nova Familia">
+							<p:resetInput target=":newUserForm:displayNewUser" />
+
+						</p:commandButton>
+						<p:commandButton value="Deletar Familias" ajax="false"
+							action="#{pesquisaFamiliasBean.doDeleteFamilias}"
+							update="familiasTable" icon="ui-icon-trash" />
+					</f:facet>
+				</p:dataTable>
+
+				<p:confirmDialog header="#{msg.exclui_linha}"
+					message="Deseja deletar a Família #{pesquisaFamiliasBean.familiaSelecionada} ?"
+					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+					<p:button value="#{msg.nao}"
+						onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="#{msg.sim}"
+						oncomplete="confirmacaoExclusao.hide();"
+						action="#{pesquisaFamiliasBean.excluir}" process="@this"
+						update=":frmPesquisa:familiasTable" />
+				</p:confirmDialog>
+
+			</h:form>
+			<p:dialog header="Atualizar Família" widgetVar="userDialog"
+				resizable="false" id="userDlg">
+				<h:form id="userDetailForm">
+					<p:panelGrid id="display" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+						<h:outputText value="Familia:"></h:outputText>
+
+
+						<h:inputText
+							value="#{pesquisaFamiliasBean.familiaSelecionada.empresa.nome}"
+							required="true" requiredMessage="Please Enter Name!" />
+
+
+						<f:facet name="footer">
+							<p:commandButton value="Update"
+								update=":frmPesquisa:familiasTable, :growl"
+								oncomplete="handleSubmitRequest(xhr, status, args, 'userDlg','newUserForm'); "
+								actionListener="#{pesquisaFamiliasBean.doUpdateFamilia}" />
+						</f:facet>
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+
+
+			<p:dialog header="Criar Nova Familia" widgetVar="newUserDialog"
+				resizable="false" id="newUserDlg">
+				<h:form id="newUserForm">
+					<p:panelGrid id="displayNewUser" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+						<h:outputText value="Nome :"></h:outputText>
+						<p:inputText value="#{pesquisaFamiliasBean.novaFamilia.descricao}"
+							required="true" requiredMessage="Please Enter Username!" />
+
+						<p:outputLabel value="#{msg.empresa} :" for="empresa" />
+						<p:selectOneMenu id="empresa" required="true"
+							value="#{pesquisaFamiliasBean.novaFamilia.empresa}">
+							<f:selectItem itemLabel="#{msg.seleciona_empresa}" />
+							<f:selectItems value="#{pesquisaFamiliasBean.empresasRaizes}"
+								var="empresa" itemValue="#{empresa}"
+								itemLabel="#{empresa.nome} " />
+							<f:converter converterId="empresaConverter" />
+						</p:selectOneMenu>
+						<f:facet name="footer">
+							<p:commandButton value="Submit"
+								update=":frmPesquisa:familiasTable, :growl"
+								oncomplete=" handleSubmitRequest(xhr, status, args, 'newUserDlg','newUserForm');"
+								actionListener="#{pesquisaFamiliasBean.doCreateFamlia}" />
+							<p:commandButton type="reset" value="Reset"></p:commandButton>
+						</f:facet>
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:growl id="growl" showDetail="true" life="5000" />
+
+			<script type="text/javascript">
+				function handleSubmitRequest(xhr, status, args, dialogName,
+						formName) {
+					dialog = jQuery('#' + dialogName);
+					if (args.validationFailed) {
+						dialog.effect("shake", {
+							times : 3
+						}, 100);
+					} else {
+						clearForm(formName);
+						newUserDialog.hide();
+						userDialog.hide();
+					}
+				}
+				function clearForm(formName) {
+					jQuery('#' + formName).each(function() {
+						this.reset();
+					});
+				}
+			</script>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

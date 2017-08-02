@@ -9,10 +9,9 @@
 		<ui:define name="divMain">
 
 
-
 			<f:metadata>
 
-				<f:event listener="#{fileBean.inicializar}" type="preRenderView" />
+				<f:event listener="#{fileBean.inicializar()}" type="preRenderView" />
 			</f:metadata>
 
 
@@ -21,7 +20,9 @@
 
 
 				<h:form enctype="multipart/form-data">
-					
+					<p:panelGrid columns="2" styleClass="semBorda"
+						columnClasses="rotulo, campo">
+
 						<p:outputLabel value="#{msg.empresa} *  " for="empresa" />
 						<p:selectOneMenu id="empresa" converter="empresaConverter"
 							value="#{fileBean.empresaSelecionada}">
@@ -29,18 +30,23 @@
 							<f:selectItems value="#{fileBean.todasEmpresas}" var="empresa"
 								itemValue="#{empresa}" itemLabel="#{empresa.nome}" />
 
+							
 						</p:selectOneMenu>
 
-						
-						<p:fileUpload id="import" value="#{fileBean.file}" mode="single" label="#{msg.procurar}" 
-							auto="true" fileUploadListener="#{fileBean.handleFileUpload}"
-							invalidFileMessage="#{msg.somente_excel}"
-							allowTypes="/(\.|\/)(xls|xlsx)$/" />
 
-						<p:commandButton id="saveBtn" value="#{msg.enviar}"
-							onstart="importaDlg.show();" oncomplete="importaDlg.hide();"
-							disabled="#{fileBean.desabilitaBotao}" action="#{fileBean.send}"
-							update="empresa,saveBtn">
+						
+						
+						
+					</p:panelGrid>
+					
+					<p:fileUpload id="import" value="#{fileBean.file}" mode="single"
+							label="Enviar" auto="true"
+							fileUploadListener="#{fileBean.handleFileUpload}"
+							invalidFileMessage="#{msg.somente_excel}"
+							allowTypes="/(\.|\/)(xml)$/" />
+
+						<p:commandButton id="saveBtn" value="Processar"
+							action="#{fileBean.send}">
 
 						</p:commandButton>
 						<p:dialog widgetVar="importaDlg" id="idimportaDlg" height="200"
@@ -51,7 +57,6 @@
 								<p:graphicImage library="images" name="ajax-loading-bar.png" />
 							</p:panelGrid>
 						</p:dialog>
-					
 				</h:form>
 			</div>
 

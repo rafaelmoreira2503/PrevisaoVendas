@@ -1,0 +1,1239 @@
+<lista>
+	<produto>
+		<codigoProduto>0218308</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BOLINHA DE BRIGADEIRO </descricao>
+		<valor>35</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>23</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>28</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>37</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>34</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>38</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>42</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>51</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>43</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>48</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>43</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>52</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>54</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>59</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>53</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>58</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>49</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>53</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>51</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>56</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>0907499</codigoProduto>
+		<codigoFilial>Filial São Paulo </codigoFilial>
+		<descricao>AVELâ</descricao>
+		<valor>38</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>46</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>52</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>56</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>59</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>64</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>67</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>71</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>78</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>75</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>68</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>66</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>75</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>65</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>72</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>78</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>74</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>82</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>78</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>75</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>1078755</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>EXTRA CACAU </descricao>
+		<valor>45</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>50</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>53</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>58</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>64</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>69</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>75</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>82</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>88</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>83</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>89</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>95</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>102</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>110</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>118</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001144</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>CANBERRY COBERTA COM CHOCOLATE </descricao>
+		<valor>40</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>48</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>54</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>61</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>66</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>73</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>75</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>79</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>95</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>78</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>72</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>64</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>67</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>62</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>69</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>79</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>89</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>76</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001152</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>CRYSPI GRÃO DE BICO ERVAS FINAS </descricao>
+		<valor>54</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>51</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>45</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>40</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>61</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>65</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>69</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>65</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>71</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>78</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>76</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>83</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>80</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001160 </codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao> CRYSPI GRÃO DE BICO PIMENTA</descricao>
+		<valor>46</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>890</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>58</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>71</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>93</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>66</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>74</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>82</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>85</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>87</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>83</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>87</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001217</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BANANADA CASCAO </descricao>
+		<valor>51</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>46</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>43</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>53</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>59</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>61</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>73</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>85</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>93</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>81</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>87</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>81</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>106</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001241</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BANANADA CRISTALIZADA </descricao>
+		<valor>98</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>87</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>105</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>102</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>114</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>104</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>111</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>103</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>115</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>106</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>91</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>100</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>111</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>118</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001268</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BOLINHAS DE QUEIJO </descricao>
+		<valor>60</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>74</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>99</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>105</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>118</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>105</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>117</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>99</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>107</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>95</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>103</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>101</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>115</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>106</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>102</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>112</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2001284</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BOLINHAS DE PRESUNTO </descricao>
+		<valor>71</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-012-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>85</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>95</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>104</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>111</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>94</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>102</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>107</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>112</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>120</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>114</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>114</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>118</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>123</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2002205</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BOMBOM DE CHOCOLATE AO LEITE </descricao>
+		<valor>87</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>102</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>107</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>108</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>104</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>115</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>117</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>93</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>106</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>95</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>90</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>104</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>101</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>104</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>110</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>116</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	<produto>
+		<codigoProduto>2002221</codigoProduto>
+		<codigoFilial>Filial São Paulo</codigoFilial>
+		<descricao>BOMOM DE CHOCOLATE COM NOZES </descricao>
+		<valor>78</valor>
+		<historicos>
+			<historico>
+				<mesesHistoricos>1998-01-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>86</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-02-21 20:35:16.726 UTC</mesesHistoricos>
+				<quantidade>98</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-03-21 21:35:16.729 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-04-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-05-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-06-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-07-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>87</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-08-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-09-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>81</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-10-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>84</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-11-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>96</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1998-12-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>92</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-01-21 20:35:16.730 UTC</mesesHistoricos>
+				<quantidade>103</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-02-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>112</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-03-21 21:35:16.730 UTC</mesesHistoricos>
+				<quantidade>101</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-04-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>97</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-05-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>105</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-06-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>110</quantidade>
+				<produto reference="../../.." />
+			</historico>
+			<historico>
+				<mesesHistoricos>1999-07-21 21:35:16.731 UTC</mesesHistoricos>
+				<quantidade>120</quantidade>
+				<produto reference="../../.." />
+			</historico>
+		</historicos>
+	</produto>
+	
+</lista>
